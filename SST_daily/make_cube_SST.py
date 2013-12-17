@@ -6,13 +6,13 @@ import os
 
 def main():
     # We create a list of all of the files from which we wish to gather data
-    data_files_8n = os.listdir('/home/michael/Desktop/SST_daily/8')
-    data_files_5n = os.listdir('/home/michael/Desktop/SST_daily/5')
-    data_files_2n = os.listdir('/home/michael/Desktop/SST_daily/2')
-    data_files_0n = os.listdir('/home/michael/Desktop/SST_daily/0')  
-    data_files_2s = os.listdir('/home/michael/Desktop/SST_daily/-2')
-    data_files_5s = os.listdir('/home/michael/Desktop/SST_daily/-5')
-    data_files_8s = os.listdir('/home/michael/Desktop/SST_daily/-8')
+    data_files_8n = os.listdir('/home/michael/Desktop/git/Masters/SST_daily/8')
+    data_files_5n = os.listdir('/home/michael/Desktop/git/Masters/SST_daily/5')
+    data_files_2n = os.listdir('/home/michael/Desktop/git/Masters/SST_daily/2')
+    data_files_0n = os.listdir('/home/michael/Desktop/git/Masters/SST_daily/0')  
+    data_files_2s = os.listdir('/home/michael/Desktop/git/Masters/SST_daily/-2')
+    data_files_5s = os.listdir('/home/michael/Desktop/git/Masters/SST_daily/-5')
+    data_files_8s = os.listdir('/home/michael/Desktop/git/Masters/SST_daily/-8')
     
     all_files = [data_files_8n, data_files_5n, data_files_2n, data_files_0n,
                  data_files_2s, data_files_5s, data_files_8s]
@@ -57,13 +57,8 @@ def main():
     anomoly_cube = anomoly_data_cube_list_2D.merge()[0]
     anomoly_cube.rename('SST anomoly')
     print 'anomoly done'
-   
-    print monthly_average_cube_list_2D[2]
-    print monthly_average_cube_list_2D[2].metadata
-    print monthly_average_cube_list_2D[0]
-    print monthly_average_cube_list_2D[0].metadata
-    print monthly_average_cube_list_2D[4]
-    print monthly_average_cube_list_2D[4].metadata
+
+    iris.save(monthly_average_cube_list_2D, 'monthly_average.nc')
     monthly_average_cube = monthly_average_cube_list_2D.merge()[0]
     monthly_average_cube.rename('Average SST by month')
     print 'monthly average done'
@@ -92,7 +87,7 @@ def extract_data(latitude, longitude, masked_value):
 
     data = []
     
-    filename = '/home/michael/Desktop/SST_daily/' + str(latitude) + '/' + str(longitude) + '.txt'
+    filename = '/home/michael/Desktop/git/Masters/SST_daily/' + str(latitude) + '/' + str(longitude) + '.txt'
     
     for year in xrange(start_year, end_year):
         for month in months:

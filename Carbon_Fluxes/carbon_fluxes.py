@@ -1,10 +1,14 @@
 import iris
+import sys
+
+sys.path.append('/home/michael/Desktop/git/Masters/SST_daily')
+import make_cube_SST
 
 '''
 In the following scrip, we calculate the carbon fluxes from this equation:
 
 Carbon Flux = constant * (windspeed)**2 * [(partial pressure of disolved CO2) - (partial pressure of atmospheric CO2)]
-    
+
 
 For the purposes of this rough calculation, we have;
 
@@ -22,16 +26,28 @@ d(pCO2)/dT = 0.0423(pCO2)
 
 leading to (pCO2) = A * exp(0.0423*T)
 
-Taking zero flux at 300K gives A = 0.000109
+Taking zero flux at 300K gives A = 0.000096
 
 '''
 
-temperature = iris.load_cube('/home/michael/Desktop/SST_daily/SST_raw.nc')
-windspeed = iris.load('/home/michael/Desktop/Wspd_daily/Wspd.nc')[0]
+SST_cubes = iris.load('/home/michael/Desktop/git/Masters/SST_daily/SST_cubes.nc')
+Wspd_cubes = iris.load('/home/michael/Desktop/git/Masters/Wspd_daily/Wspd_cubes.nc')
 
-carbon_flux = (windspeed**2) * (0.000109 * iris.analysis.maths.exp(0.0423 * temperature) - 35.5)
+SST = SST_cubes[1]
+Wind = Wspd_cubes[0]
+
+Wind.units = None
+
+gas_transfer_velocity = 0.31*Wind**2 - 0.91*Wind + 7.76
+
+carbon_flux = 0.03 * gas_transfer_velocity * (0.0001 * iris.analysis.maths.exp(0.0423 * SST) - 35.5)
+carbon_flux.rename('carbon_flux')
+carbon_flux.units = 'mol m-2 yr-1'
 
 mean_carbon_flux = carbon_flux.collapsed('time', iris.analysis.MEAN)
+mean_carbon_flux.rename('mean_carbon_flux')
+
+carbon_flux_anomoly = make_cube_SST.convert_to_anomoly(carbon_flux.data, 0, 0)
 
 all_cubes = (carbon_flux, mean_carbon_flux)
 
