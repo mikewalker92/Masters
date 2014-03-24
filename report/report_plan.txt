@@ -1,0 +1,188 @@
+\documentclass[11pt,twocolumn]{article}
+
+\begin{document}
+    \onecolumn
+    \title{Masters Project Report}
+    \author{linc2908}
+    \date{\today}
+    \maketitle
+
+    \abstract{This will be a lovely abstract. Text currently here to ensure that the layout is correct.}
+
+    \twocolumn
+
+    \section{Introduction}
+
+        \begin{itemize}
+            \item{broad aim of project}
+            \begin{itemize}
+                \item{Construct a simple model of CO2 flux in the equatorial Pacific}
+                \item{Focus on Carbon flux during ENSO}
+            \end{itemize}
+
+            \item{Description of ENSO}
+            \begin{itemize}
+                \item{Definition El Nino}
+                \item{Definition El Nina}
+                \item{Definition ENSO}
+                \item{describe thermocline}
+                \item{describe ocean atmosphere coupling}
+                \item{diagram of coupling}
+                \item{idea that ENSO is due to perturbations in the thermocline depth}
+                \item{describe Kelvin and Rossby waves}
+            \end{itemize}
+
+            \item{why is this project important?}
+            \begin{itemize}
+                \item{ocean is a huge store of CO2}
+                \item{important to understand ocean atmosphere transfer in order to forcast atmospheric 
+                      CO2 levels}
+                \item{ENSO is the largest observed mode of variability in global SST}
+                \item{This region is especially important as the GCMs struggle to accurately represent ENSO}
+            \end{itemize}
+
+            \item{detailed goals of project}
+            \begin{itemize}
+                \item{model should be physically intuitive}
+                \item{model should be driven by observation}
+                \item{model should be as simple as possible both conceptually and computationally}
+            \end{itemize}
+
+        \end{itemize}
+
+    \section{Experimental Method}
+
+        \begin{itemize}
+
+            \item{basic outline of model}
+            \begin{itemize}
+                \item{split flux into two main components}
+                \item{expect the temperature of the water at the surface to effect the amount of 
+                carbon that can be dissolved within it, and so crfeate a flux}
+                \item{expect that the cold, carbon rich water being upwelled will release carbon 
+                as it warms up in the upper layer}
+                \item{note what we have ignored}s
+                \begin{itemize}
+                    \item{biology}
+                    \item{horizontal advective currents}
+                \end{itemize}
+                \item{approximation that these are independant}
+            \end{itemize}
+
+            \item{contribution due to sst..... explanation + equations}
+            \begin{itemize}
+                \item{We expect changes in the temperature of the water to effect both the solubility
+                      of the water and the partial pressure of the CO2 dissoled in it}
+                \item{present equation for flux from sst}
+                \item{graph of solubility of CO2 in water}
+                \item{approximate the solubility of CO2 in sea water as $eqn$ in this temperature range}
+                \item{approximate pCO2 ocean as $eqn$ }
+                \item{talk about the gas transfer constant}
+                \item{rewrite full equation}
+            \end{itemize}
+
+            \item{contribution due to upwelling ..... explanation + equations}
+            \begin{itemize}
+                \item{cold upwelled water is carbon rich}
+                \item{as it warms we expect an amount of carbon to be released}
+                \item{equation}
+            \end{itemize}
+
+            \item{summary of full model}
+            \begin{itemize}
+                \item{$eqn$}
+            \end{itemize}
+
+            \item{test on globe???}
+            \begin{itemize}
+                \item{redo these graphs and see if they are interesting}
+                \item{global plot for flux due to sst}
+                \item{compare with data}
+                \item{global plot for flux due to upwelling}
+                \item{compare with data}
+            \end{itemize}
+
+            \item{one to get this in terms of just 1 parameter}
+            \begin{itemize}
+                \item{wish to see how the carbon flux is effected by ENSO}
+                \item{need a model based only on some ENSO strength parameter}
+                \item{will choose thermocline height}
+                \item{from data, 20 degree isotherm height will act as a standin}
+                \item{we hope that all variables can be characterised in terms of this}
+            \end{itemize}
+
+            \item{look for correlations in data}
+            \begin{itemize}
+                \item{analysis of data to obtain anomaly data}
+                \item{look for correlations between isotherm anomaly and other variables}
+                \item{plots go here???}
+            \end{itemize}
+
+            \item{model for upwelling}
+            \begin{itemize}
+                \item{there is no recorded data for the upwelling velocity}
+                \item{we must construct a model from the variables availiable}
+                \item{assumption that heat should be the same everywhere}
+                \item{we calculate a volume of cold water from the difference}
+                \item{we create an replenishment rate R}
+                \item{we use this to calculate an aproximate upwelling rate}
+            \end{itemize}
+
+            \item{comparison with data to obtain constants}
+            \begin{itemize}
+                \item{fetch data for true carbon flux}
+                \item{fix parameters such that the mean values agree}
+            \end{itemize}
+
+            \item{final summary of the model}
+            \begin{itemize}
+                \item{putting everything together}
+                \item{$eqn$}
+            \end{itemize}
+
+            \item{model of thermocline height}
+            \begin{itemize}
+                \item{to test the dynamics, we need a simple model of thermocline height}
+                \item{outline the simple delay model}
+                \item{descibe chosen forcing}
+                \item{show iterative solution for h}
+                \item{this h can now be used as the variable for the flux model}
+            \end{itemize}
+
+        \end{itemize}
+
+    \section{Results}
+
+        \begin{itemize}
+
+            \item{plot of carbon flux over time at one grid point real data}
+            \begin{itemize}
+                \item{time series - 3 lines, sst, upwelling, total}
+                \item{phase space diagram}
+                \item{power spectrum}
+            \end{itemize}
+            
+            \item{plot of carbon flux over time at one grid point model h data}
+            \begin{itemize}
+                \item{time series - 3 lines, sst, upwelling, total}
+                \item{phase space diagram}
+                \item{power spectrum}
+            \end{itemize}
+            
+            \item{time averaged carbon flux over the basin}
+            \begin{itemize}
+                \item{sst flux}
+                \item{upwelling flux}
+                \item{total}
+                \item{real data plot}
+            \end{itemize}
+
+        \end{itemize}
+
+    \section{Analysis}
+
+    \section{Conclusions}
+
+    \section{Bibliography}
+
+\end{document}

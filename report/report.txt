@@ -1,0 +1,236 @@
+\documentclass[11pt,twocolumn]{article}
+\usepackage{amsmath}
+
+\begin{document}
+    \title{Masters Project Report}
+    \author{linc2908}
+    \date{\today}
+
+    \twocolumn[
+        \begin{@twocolumnfalse}
+            \maketitle
+            \begin{abstract}
+            This will be a lovely abstract. Text currently here to ensure that the layout is 
+correct.
+            \end{abstract}
+        \end{@twocolumnfalse}
+        ]
+
+    \section{Introduction}
+
+    In this project, we aimed to construct a simple model to describe the flux of carbon dioxide 
+between the ocean and the atmosphere in the equatorialPacific. In particular, we would like to 
+understand how the flux is affected by the El Nino Southern Oscillation (hereafter ENSO).
+
+We begin by offering a brief discription of some of the terms thats we shall use in the report;
+
+    \emph{El Nino:} Anomalously warm water in the equatorial Pacific lasting for several months and 
+normally centred in the east or the centre of the basin.
+
+    \emph{La Nina:} Anomalously cold water in the equatorial Pacific lasting for several months and 
+normally centred in the east or the centre of the basin.
+
+    \emph{ENSO:} The El Nino Southern Oscillation is the term given to the irregular cycle of El 
+Nino and La Nina events. The Southern Oscillation here refers to the pressure changes between the 
+East and West coast of the equatorial Pacific that accompany these events. ENSO typically has a 
+time period of between 2 and 7 years.
+
+    \emph{Two Level Ocean:} Throughout this report, we will aproximate the ocean as a two level 
+ocean. By this, we mean that the ocean is comprised of an upper, mixed layer, and a lower, deep 
+ocean. The upper layer will be warmer, and will interact with the atmosphere. We can also assume 
+that this layer will change on timescales much shorter than a year. By contrast, the deep ocean is 
+colder, and we assume that its properties are constant over the timescales delbt with here.
+
+    \emph{Thermocline:} A thin layer in the ocean where the temperature of the water changes 
+rapidly with depth. We can interpret this as a surface which marks the boundary between the mixed 
+layer and the deep ocean. 
+
+    To understand why ENSO occurs, we first must look at the main proccesses that occur in the 
+Pacific.
+    Under normal conditions, (ie, neither El Nino nor La Nina conditions) the westerly trade winds 
+create a mean westerly flow in both the mixed layer of the ocean and the air above it. In the east 
+of the basin, this causes water from the deep ocean to be drawn to the surface to replace the water 
+which has moved west. We shall call this process of deep ocean water being drawn to the surface 
+upwelling. This upwelled water from the deep ocean is much colder and far more rich in carbon 
+dioxide and nutrients, resulting in a cooler sea surface temperature (hearafter SST) in the east. A 
+further result of this is that the thermocline is much shallower in the east than in the west. 
+
+    If we now perturb the system away from this, create a rossby wave which propagates westwards, 
+comes back again as a Kelvin wave and reinteracts with the thermocline. 
+
+    ENSO is the largest observed source of variability found in global SST, and as a result of 
+this, we expect it to also have a large impact on the variability of the carbon flux between the 
+ocean and the atmosphere. 
+    Given that the ocean is one of the largest stores of carbon globally, changes in the level of 
+this are important to understand if we are to acurately predict how levels of CO2 will change in 
+the future. 
+    One of the reasons why this region is particularly interesting is that the large, complex 
+weather and climate models generally struggle to reproduce the correct combination of amplitude, 
+location and power spectrum of ENSO. As a result of this, predictions based on these models 
+struggle to accurately represent the contribution that the El Nino events represent to the global 
+carbon flux. Furthermore, these models are also in gerneral very difficult to interpret physically.
+
+    In light of this, we would like to step back from these complex and detailed models, and 
+instead attempt to build a low order and intuitive model of the carbon flux during ENSO. The main 
+goals of this project are therefore to create a model which is as simple as possible while still 
+capturing the main effects, gives a answer which is easy to interpret physically, and is driven by 
+observational data. 
+
+
+    \section{Experimental Method}
+
+    In our model, we assume that the two factors which will have the largest effect on the flux in 
+this region will be the surface temperature of the water and the rate of upwelling in that area. As 
+such, it will be the contribution due to these factors that we use to construct our model. Two 
+notable factors that we have chosen to ignore here are the effect of biology in the ocean and any 
+effect due to advective currents. We have also assumed that we are able to treat these two factors 
+as independant of one another.
+
+    \subsection{Flux due to SST}
+
+    We expect the SST to have an impact on the amount of flux observed simply beccause the 
+solubility of a gas in water depends on the temperature of the water. As the water heats up, the 
+solubility decreases, and so we expect a more positive flux at higher temperatures.
+
+    In our model, we will estimate the CO2 flux due to the temperature of the water as being equal 
+to the difference in the concentration of CO2 in the ocean and the air multiplied by the gas 
+transfer constant. From this, we obtain the following equation;
+
+    \begin{equation}
+    F_{SST} = H(T_{SST}) k(v_{wind}) \lbrace pCO_2^{ocean} - pCO_2^{air} \rbrace
+    \end{equation}
+
+    Where $pCO_2$ is the partial pressure of CO2 and $H$ is Henry's constant, which relates 
+for a given temperature, the concentration of a gas in a liquid to its partial pressure via;
+
+    \begin{equation}
+    H(T_{SST}) = \frac{[CO_2]}{pCO_2}
+    \end{equation}
+
+    $H(T)$ is a constant for a given temperature, so we can obtain a value for it by looking at a 
+simple system with still water and gaseous CO2 at a pressure of one atmosphere above it. The 
+partial pressure is then 1 atmosphere (101 kPa) and the concentration of CO2 in the water is then 
+simply the solubility of the water at this temperature. The solubility of C02 in water is shown in 
+(figure). We approximate the solubility in this temperature range as;
+
+    \begin{equation}
+    S(T) = 22.4 - 0.07T)
+    \end{equation}
+
+    Therefore, we finally have that;
+
+    \begin{equation}
+    H(T) = \frac{22.4 - 0.07T}{1.01 \cdot 10^5}
+    \end{equation}
+
+    The gas transfer velocity, $k$, is typically taken to be a function of the windspeed at the 
+surface of the ocean. We will use the form suggested in (reference) of;
+
+    \begin{equation}
+    k(v_{wind}) = 87.6 \cdot (0.31v_{wind}^2 - 0.71v_{wind} + 7.76)
+    \end{equation}
+
+    (we have multipiled by 86.7 to convert from units of cm/s to units of m/year)
+
+    We use the results of (reference) to parameterise $pCO_2^{ocean}$ as;
+
+    \begin{equation}
+    pCO_2^{ocean} = A  e^{\alpha T_{SST}}
+    \end{equation}
+
+    Finally, we assume a constant mole fraction of $CO_2$ in the atmosphere, $f$, to give;
+
+    \begin{equation}
+    pCO_2^{air} = fP
+    \end{equation}
+
+    where P here is atmospheric pressure.
+
+    \subsection{Flux due to Upwelling}
+
+    We expect the upwelling to have an effect on the CO2 flux because the deep water is know to be 
+far cooler and far richer in CO2 than the water in the mixed layer. As this water is brought to 
+the surface, it warms up, and releases some of the CO2 contained within it. 
+
+    We can quickly estimate the amount of CO2 released in this proccess as being equal to the 
+amount of carbon released per unit volume of water multiplied by the upwelling velocity, $w$. We 
+calculate the amount of carbon realsed as the change in the concentration of CO2. 
+
+    As before, we estimate the concentration as $pCO_2^{air}) \cdot H$  and so our concentration is 
+estimated as;
+
+    \begin{equation}
+    [CO_2] = f P \cdot \frac{22.4 - 0.07 T}{P} = f \cdot (22.4 - 0.07 T) 
+    \end{equation}
+
+    Which suggests a change in concentration of;
+
+    \begin{equation}
+    \Delta [CO_2] = f \cdot \Delta T
+    \end{equation}
+
+    Where $\delta T$ is a parameter representing the change in temperature experienced by the water 
+as it rises. 
+
+    Finally, this results in a flux due to an upwelling velocity $w$ of;
+
+    \begin{equation}
+    F_{upwelling} = f \cdot \Delta T \cdot w
+    \end{equation}
+
+    \subsection{Whole Model}
+
+    Combining these two contributions, we obtain the following equation which will serve as the 
+basis for all of the calculations in this paper;
+
+    \begin{equation}\label{xx}
+    \begin{split}
+    F_{total}& = F_{SST} + F_{upwelling} \\
+     & = H k \cdot \lbrace A e^{aT} - f P \rbrace + f \Delta T w
+     \end{split}
+    \end{equation}
+
+    \subsection{Estimation of upwelling rate}
+
+    Equation () serves as a clear and physically intuitive description of the effects that we 
+will be considering, however, this form of the equation is difficult to use in practice as the 
+upwelling rate $w$ is very small and is almost never measured. This lack of data makes it 
+nessessary for us to construct a simple model to aproximate the value of $w$ from variables for 
+which are measured routinely. 
+
+    \vspace{10 mm}
+
+    We are interested in effects on or very close to the equator, and therefore are are considering
+points which are at almost the same latitude. Additionally, near the equator we can assume that 
+currents will predomenantly run along the equator rather than across it. These two factors lead us 
+to assert that if there was no upwelling anywhere in the basin, we would expect to see very 
+similar temperature profile at any point in the basin. This is not what is observed, and we assume 
+that the deviations are due to upwelling cold water. 
+    A useful variable for us to use here is the heat content of the water per unit area (calculated 
+as a integral of the heat content over the top 300m of the ocean). From our model of the dynamics 
+in the Pacific basin, we expect to see very little or no upwelling in the west of the basin, and so 
+we assume that the heat content here is what we would expect to find in the absence of upwelling. 
+At all other points, we can then calculate a heat difference, finding that the heat content is lower 
+in the east of the basin. Using our model of a two layer ocean, we can then work out the volume of 
+deep ocean water needed in order to explain the heat difference.
+
+    diagram goes here
+
+    \begin{equation}
+    \begin{split}
+    Heat_{reference}& = m c d T_{hot} + m c (D - d) T_{cold}\\
+    Heat_{actual}& = mc (d - x) T_{hot} + m c(D - d + x) T_{cold}\\
+    Heat_{difference}& = Heat_{reference} - Heat_{actual}\\
+    & = mcx \Delta T
+    \end{split}
+    \end{equation}
+
+    Where we have defined $\Delta T = T_{hot} - T_{cold}$. 
+    We now rearange to find the cold water volume $V_{cold water}$.
+
+    \begin{equation}
+    V_{cold water} = \frac {Heat_{difference}}{m c \Delta T}
+    \end{equation}
+
+
+\end{document}
