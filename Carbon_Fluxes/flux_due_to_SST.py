@@ -78,14 +78,9 @@ reference_temp = 300
 A = pCO2_air / (math.exp(a*reference_temp))
 H = 0.000347
 
-# make solubility cube
-temp_adjustment = -0.00007 * SST
-S = iris.analysis.maths.add(temp_adjustment, 0.0224)
-S.rename('Solubility')
-
 pCO2_ocean = A * iris.analysis.maths.exp(a*SST)
 
-CO2_flux = k*H*S*(pCO2_ocean - pCO2_air)
+CO2_flux = k*H*(pCO2_ocean - pCO2_air)
 CO2_flux.rename('CO2 flux due to surface temperature')
 CO2_flux.units = 'mol m-2 yr-1'
 
@@ -94,6 +89,6 @@ mean_carbon_flux.rename('mean_carbon_flux')
 
 # carbon_flux_anomoly = make_cube_SST.convert_to_anomoly(carbon_flux.data, 0, 0)
 
-all_cubes = (CO2_flux, mean_carbon_flux, S)
+all_cubes = (CO2_flux, mean_carbon_flux)
 
 iris.save(all_cubes, 'CO2_flux_SST.nc')

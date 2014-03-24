@@ -72,7 +72,9 @@ def main():
     variation_cube = variation_data_cube_list_2D.merge()[0]
     variation_cube.rename('20C isotherm depth variations')
     
-    all_cubes = [raw_data_cube, monthly_average_cube, variation_cube, anomoly_cube, average_temp_cube]
+    equatorial_height = average_temp_cube[3]
+    
+    all_cubes = [raw_data_cube, monthly_average_cube, variation_cube, anomoly_cube, average_temp_cube, equatorial_height]
     
     file_type = '.nc'
     filename = 'isotherm_cubes' + file_type

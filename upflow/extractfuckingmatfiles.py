@@ -34,7 +34,6 @@ for line in wfile:
     array = np.array(values)  
     array = array.reshape(40, 216)
     data_list.append(array)
-
 wfile.close()
 data = np.dstack(data_list)
 masked = np.ma.masked_values(data, 99.9, atol=0.1)
@@ -44,12 +43,10 @@ latitude = iris.coords.DimCoord(latitudes, standard_name = 'latitude', long_name
 longitude = iris.coords.DimCoord(longitudes, standard_name = 'longitude', long_name = 'longitude', units = 'degrees')
 
 upwelling = iris.cube.Cube(masked, long_name = 'Upwelling', units = None, dim_coords_and_dims=[(depth, 0),(latitude, 1),(longitude, 2)])
+upwelling.rename('upwelling')
 
-depth_average = upwelling.collapsed('depth', iris.analysis.MEAN)
-depth_average.rename('average over depth')
+iris.save(upwelling, 'upwelling.nc')
 
-all_cubes = [upwelling, depth_average]
 
-iris.save(all_cubes, 'upwelling.nc')
 
 
