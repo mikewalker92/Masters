@@ -29,18 +29,18 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 import masters_library as lib
-import enso_model 
 
-show1 = False
-show2 = False
-show3 = False
-show4 = False
-show5 = False
-show6 = False
-show7 = False
-show8 = False
+show1 = True
+show2 = True
+show3 = True
+show4 = True
+show5 = True
+show6 = True
+show7 = True
+show8 = True
 show9 = True
-show10 = False
+show10 = True
+show11 = True
 
 '''
 --------------------------------------------------------------------------------
@@ -63,6 +63,12 @@ sst_anomaly = iris.load(file_location)[1]
 heat_anomaly = iris.load(file_location)[12]
 pressure_anomaly = iris.load(file_location)[10]
 wind_anomaly = iris.load(file_location)[7]
+
+# And now the means for each month of the year.
+means_sst = iris.load(file_location)[4]
+means_heat = iris.load(file_location)[3]
+means_pressure = iris.load(file_location)[0]
+means_wind = iris.load(file_location)[11]
 
 # We also load the data file containing the observed global CO2 flux.
 
@@ -100,7 +106,9 @@ const = {'f':f,
          'pressure_const':pressure_const,
          'heat_ref':heat_ref,
          'rho':rho,
-         'c':c}
+         'c':c,
+         'selected_lat' : selected_lat,
+         'selected_lon' : selected_lon}
 
 nino_time = 500
 nina_time = 600
@@ -164,17 +172,21 @@ Figure 3: Comparison of model and observed data.
 if show3:
 
     filename = '/home/michael/git/Masters/report/figures/enso_model.nc'
-    model_data = iris.load_cube(filename)
+    model_cube = iris.load_cube(filename)
+    model_data = model_cube.data
+    plot_start = 75000
+    plot_end = 90000
 
     observed_data = isotherm_anomaly[selected_lat, selected_lon]
 
-    plt.subplot(3,2,1)
-    qplt.plot(model_data)
+    plt.subplot(2,1,1)
+    plt.plot(model_data[plot_start:plot_end])
 
-    plt.subplot(3,2,2)
-    qplt.plot(observed_data, label='Observed isotherm anomaly')
-
+    plt.subplot(2,1,2)
+    qplt.plot(observed_data)
+   
     plt.show()
+    
 
 
 '''
@@ -308,21 +320,23 @@ Figure 9: Flux all variables vs Flux just isotherm depth
 --------------------------------------------------------------------------------
 '''
 
-if show9 or show10:
+if show9 or show10 or show11:
     
-    data = [isotherm_anomaly, 
-            sst_anomaly, 
-            heat_anomaly, 
-            pressure_anomaly,
-            wind_anomaly]
-    
-    correlations = get_correlations(data)
+    sst_correlations = lib.get_correlations(isotherm_anomaly, sst_anomaly)
+    heat_correlations = lib.get_correlations(isotherm_anomaly, heat_anomaly)
+    pressure_correlations = lib.get_correlations(isotherm_anomaly, pressure_anomaly)
+    wind_correlations = lib.get_correlations(isotherm_anomaly, wind_anomaly)
     
     iso_data = isotherm_anomaly[selected_lat, selected_lon]
     
-    correlation_data = []
-    for cube in correlations:
-        correlation_data.append(cube[selected_lat, selected_lon])
+    correlation_data = {'gradient_sst' : sst_correlations[1][selected_lat, selected_lon],
+                        'gradient_heat' : heat_correlations[1][selected_lat, selected_lon],
+                        'gradient_pressure' : pressure_correlations[1][selected_lat, selected_lon],
+                        'gradient_wind' : wind_correlations[1][selected_lat, selected_lon],
+                        'means_sst' : means_sst[selected_lat, selected_lon],
+                        'means_heat' : means_heat[selected_lat, selected_lon],
+                        'means_pressure' : means_pressure[selected_lat, selected_lon],
+                        'means_wind' : means_wind[selected_lat, selected_lon]}
     
     if show9:
     
@@ -349,7 +363,9 @@ if show10:
     filename = '/home/michael/git/Masters/report/figures/enso_model.nc'
     model_output = iris.load_cube(filename)
     
-    flux_cubes = lib.caclulate_flux_iso_data(model_output, correlation_data, const)
+    model_output = model_output[90000:91000]
+    
+    flux_cubes = lib.calculate_flux_iso_data(model_output, correlation_data, const)
     
     flux_total = flux_cubes[0]
     flux_sst = flux_cubes[1]
@@ -362,6 +378,19 @@ if show10:
     plt.show()
 
 
+'''
+--------------------------------------------------------------------------------
+Figure 11: SST correlation across the basin
+--------------------------------------------------------------------------------
+'''
 
+if show11:
+    
+    pmcc = sst_correlations[0]
+    
+    ax = plt.axes(projection=ccrs.PlateCarree(central_longitude=180))
+    qplt.pcolormesh(pmcc)
+    ax.coastlines
+    plt.show()
 
 

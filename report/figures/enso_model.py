@@ -35,6 +35,8 @@ import iris.quickplot as qplt
 import iris.plot as iplt
 from scipy.fftpack import rfft, fftfreq
 
+import masters_library as lib
+
 
 # We begin by creating a 1D array h, representing h at each time step.
 h = []
@@ -59,7 +61,7 @@ for _ in xrange(end_time - start_time):
 kappa = 2.0
 a_plus = 1.
 a_minus = 1.
-b_plus = 1.51
+b_plus = 1.5
 b_minus = - b_plus / 5.
 h_plus = (b_plus / (kappa*a_plus)) * (a_plus - 1)
 h_minus = (b_minus / (kappa*a_minus)) * (a_minus - 1)
@@ -70,7 +72,7 @@ month = 30.
 w = 2.0*np.pi/(12.0*month)
 a = 1./180.
 b = 1./120.
-c = 1./238.
+c = 1./138.
 
 L = 1.
 Ck = 1./(2.3*month)
@@ -117,32 +119,3 @@ time = iris.coords.DimCoord(time_points, long_name='time', units='years')
 cube = iris.cube.Cube(h, long_name='kappa = ' + str(kappa) + ', dt = ' + str(dt) + ', b+ = ' + str(b_plus), units='m', dim_coords_and_dims=[(time, 0)])
 
 iris.save(cube, 'enso_model.nc')
-
-plt.plot(h, label='anomaly')
-plt.plot(AmN1_array, label='AmN1')
-plt.plot(AmN2_array, label='AmN2')
-plt.plot(seasonal, label='seasonal')
-plt.legend()
-plt.grid()
-iplt.show()
-
-delay = int(360/dt)
-record_start = 40000
-record_end = 90000
-
-h_early = [h[index - delay] for index in xrange(record_start, record_end)]
-signal = np.array(h_early)
-h_late = [h[index] for index in xrange(record_start, record_end)]
-
-fft = np.abs(rfft(signal))**2
-
-rate = 180./dt
-x = [index*rate/len(signal) for index in xrange(len(signal))]
-x = np.array(x)
-
-plt.plot(x, fft)
-plt.xlim(0,1.5)
-plt.show()
-
-plt.scatter(h_early, h_late)
-plt.show()
