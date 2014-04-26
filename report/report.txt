@@ -1,10 +1,11 @@
 \documentclass[11pt,twocolumn]{article}
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage[margin=0.8in]{geometry}
 
 \begin{document}
 \title{A Model of Air-Sea Flux of Carbon Dioxide in Response to Tropical Dynamics}
-\author{Candidate Number: 341065 \\ Supervisor: Dr L. Zanna}
+\author{Candidate Number: 341065 \\ Supervisor: Dr L. Zanna \\ Word Count : 4811}
 \date{\today}
 
 \twocolumn[
@@ -27,60 +28,69 @@ the ocean, probably as we have ignored advective currents.
 \section{Introduction}
 
 In this project, I aim to construct a simple model to describe the flux of carbon dioxide between 
-the ocean and the atmosphere in the equatorial Pacific. In particular we would like to understand 
+the ocean and the atmosphere in the equatorial Pacific. In particular I aim to investigate 
 how the $\text{CO}_2$ flux is affected by the El Nino Southern Oscillation (hereafter ENSO). 
 
 An El Nino event is when there is anomalously warm water in the equatorial Pacific for an extended 
 period of time, typically several months. The temperature anomaly is usually strongest in the east 
 or the centre of the Pacific basin. The corresponding event with colder than average water is named 
   La Nina. ENSO is the term given to the irregular cycle of El Nino and La Nina event, and 
-has a time period of between 2 and 7 years. (reference) 
+has a time period of between 2 and 7 years \cite{UKMO}
 
-To understand why ENSO occurs, we put forward an idealised model of the processes which 
-dominate the dynamics in the equatorial Pacific.
+The following idealised model of the processes which dominate the dynamics in the equatorial 
+Pacific help to explain why ENSO occurs.
 
-Throughout this report, we consider the ocean to be a two layer ocean. This is a simple model in 
-which we describe the ocean as having two distinct layers, an upper, mixed layer, and a lower, deep 
+Throughout this report, the ocean is considered to be a two layer ocean. This is a simple model in 
+which the ocean is described as having two distinct layers, an upper, mixed layer, and a lower, 
+deep 
 ocean. For a given point in space and time, each layer is considered to constant properties over 
 its entire depth. Only the mixed layer is able to interact with the atmosphere, and the properties 
 of the deep ocean change only very slowly. On the time period of interest (the time 
-period of ENSO of a few years) we take the properties of the deep  ocean to be constant. (This 
-approach is frequently used in the equatorial Pacific, for example in papers such as (reference).
-
-Under normal conditions, (neither El Nino nor La Nina) the easterly trade winds create a mean 
-westerly flow in the water at the surface of the ocean. In the east of the basin, this causes water 
-from the deep ocean to be drawn to the surface to replace the water moving to the west. We shall 
-call this process of deep ocean water being drawn up to the surface as upwelling. This upwelled 
-water is much cooler, resulting in a cooler sea surface temperature (hereafter SST) in the east 
-of the basin than in the west. We can see the effect of this upwelled water by looking at the depth 
-of the thermocline along the equator. The thermocline is a thin layer in the ocean where the 
-temperature of the water changes very rapidly with depth. In a two layer ocean, this corresponds 
-the surface which marks the boundary between the mixed layer and the deep ocean. Figure() shows 
-that under normal conditions, the thermocline is much shallower in the East of the basin than in 
-the West. We can also see that the during an El Nino event, the profile of the thermocline is much 
-flatter, and is much deeper than before in the East, and so is linked to warmer than average SST 
-here. The reverse is true during a La Nina event, with a steeper profile indicating more upwelling 
-in the East and so lower than average SST.
+period of ENSO of a few years) we take the properties of the deep  ocean to be constant.
 
 \begin{figure} [ht]
 \centering
-\includegraphics[width=85mm]{figures/isotherm_depth_along_the_equator.png}
+\includegraphics[width=85mm]{figures/TempDepthProfile.jpg}
+\caption{A typical low latitude ocean temperature profile with depth. Image from \cite{TempProfile}}
+\label{TempDepthProfile}
+\end{figure}
+
+Under normal conditions, (neither El Nino nor La Nina) the easterly trade winds create a mean 
+westerly flow in the water at the surface of the ocean. In the east of the basin, this causes water 
+from the deep ocean to be drawn to the surface to replace the water moving to the west. I shall 
+refer to this process of deep ocean water being drawn up to the surface as upwelling. This 
+upwelled water is much cooler, (as shown is Figure \ref{TempDepthProfile}), resulting in a cooler 
+sea surface temperature (hereafter SST) in the east of the basin than in the west. The effect of 
+this upwelled water can be seen by looking at the depth of the thermocline along the equator. The 
+thermocline is a layer in the ocean where the temperature of the water changes very rapidly with 
+depth. In a two layer ocean, this corresponds to the surface which marks the boundary between the 
+mixed layer and the deep ocean. Figure \ref{iso_depth_along_equator} shows that under normal 
+conditions, the thermocline is much shallower in the East of the basin than in the West. During an 
+El Nino event, the profile of the thermocline is much flatter, and is much deeper than before in the 
+East, and so is linked to warmer than average SST here. The reverse is true during a La Nina event, 
+with a steeper profile indicating more upwelling in the East and so lower than average SST.
+
+\begin{figure} [ht]
+\centering
+\includegraphics[width=90mm]{figures/isotherm_depth_along_the_equator.png}
 \caption{Comparison of the isotherm depth along the equator, showing the mean depth, (normal 
 conditions), the depth during the El Nino event of 1998, and the depth during the La Nina event of 
-1999. We can clearly see that during the El Nino event, the thermocline is much flatter. Data from 
-(reference).}
+1999. It can clearly be seen that during the El Nino event, the thermocline is much flatter. Data 
+from \cite{TAO}.}
 \label{iso_depth_along_equator}
 \end{figure}
 
-If we perturb the system away from this mean state, for example by creating a positive SST anomaly 
+If the system is perturbed away from this mean state, for example by creating a positive SST 
+anomaly 
 in the centre of the Pacific, then we weaken the easterly trade winds (the Bjerkness hypothesis 
-(reference)). We expect that this will reduce the amount of water being upwelled in the East, and 
+\cite{Bjerkness1969}). We expect that this will reduce the amount of water being upwelled in the 
+East, and 
 indeed it does excite a downwelling wave in the thermocline which will travel towards the East in 
 the form of an equatorial Kelvin wave. At the same time, a westwards moving upwelling Rossby wave 
 is created. We now have an El Nino event, with the thermocline deeper than normal in the East, and 
 shallower than normal in the West. Eventually, the westwards moving Rossby waves will reach the 
 western edge of the Pacific, and will be reflected as upwelling Kelvin waves which cancel the 
-downwelling Kelvin waves and end the event. (Further knowledge ofKelvin and Rossby waves is not 
+downwelling Kelvin waves and end the event. (Further knowledge of Kelvin and Rossby waves is not 
 required here, except that they propagate with different, well known speeds). 
 
 ENSO is the largest observed source of variation in inter annual global SST, and as a result of 
@@ -96,100 +106,100 @@ predictions of the carbon flux in this region are generally unreliable. Furtherm
 complex, numerical nature of these models, it is often difficult to gain any physical insight into 
 the processes occurring. 
 
-In light of this, we would like to step back from these complex models, and instead attempt to buld 
-a low order, physically intuitive model of how the carbon flux varies during ENSO. The main goals 
-of this project are therefore to create a model which is as simple as possible while still 
-capturing the main effects, gives an answer which is easy to interpret physically, and is driven by 
-observational data. 
+In light of this, in this project I will take a step back from these complex models, and 
+instead attempt to build a low order, physically intuitive model of how the carbon flux varies 
+during ENSO. The main goals of this project are therefore to create a model which is as simple as 
+possible while still capturing the main effects, gives an answer which is easy to interpret 
+physically, and is driven by observational data. 
 
 \section{Experimental Method}
 
-In constructing our model, we assume that the two factors which have largest effect on the 
+In constructing the model, I assume that the two factors which have largest effect on the 
 carbon flux in this region are the surface temperature of the water, and the rate of upwelling. 
-Two notable factors that we have chosen to ignore in simplifying the system are the biological life 
-  in the ocean and the horizontal advective currents. We also assume that it is possible to treat 
+Two notable factors that I have chosen to ignore in simplifying the system are the biological life 
+in the ocean and the horizontal advective currents. I also assume that it is possible to treat 
 the flux due to the temperature of the water and the flux due to the upwelling as independent 
 effects. 
 
 \subsection{Flux due to SST}
 
-We expect the SST to have an effect on the amount of flux observed as both the solubility of a gas 
-in water and the partial pressure of the gas depend on the temperature of the water. As the water 
-heats up, the solubility decreases, the partial pressure increases, and so we expect a more 
-positive flux at higher temperatures. (reference)?????
+The SST is expected to have an effect on the amount of flux observed as both the solubility of a 
+gas in water and the partial pressure of the gas depend on the temperature of the water. As the 
+water heats up, the solubility decreases, the partial pressure increases, and so a more 
+positive flux is expected at higher temperatures.
 
-We can intuitively expect that the flux of carbon dioxide out of the water will be proportional to 
-the difference in concentration of $\text{CO}_2$ between the ocean and the atmosphere. We can 
-therefore write
+It is intuitive that the flux of carbon dioxide out of the water will be proportional to 
+the difference in concentration of $\text{CO}_2$ between the ocean and the atmosphere, giving
 
 \begin{equation}
 F_{SST} = k \cdot \Delta [CO_2].
+\label{delta_co2}
 \end{equation}
 
 The constant of proportionality here is the gas transfer velocity, and is typically take to be a 
 function of the wind speed at the surface of the ocean only. We use the form suggested in 
-(reference) of;
+\cite{Jeffery2009} of;
 
 \begin{equation}
 k(v) = 87.6 \cdot (0.31v^2 - 0.71v + 7.76).
+\label{gas_transfer_def}
 \end{equation}
 
 It is convenient to present the flux in units of $mol \cdot m^{-2} \cdot yr^{-1}$, requiring k in 
-units of $m \cdot hour^{-1}$ and $\Delta [CO_2]$ in $mol \cdot m^{-3}$. The factor of 87.6 in (2) 
-is due to a unit conversion from $cm \cdot hour^{-1}$. From here, we shall use Henry's constant 
-$H(T)$ which relates for a given temperature, the concentration of gas in a liquid to its partial 
-pressure via
+units of $m \cdot hour^{-1}$ and $\Delta [CO_2]$ in $mol \cdot m^{-3}$. (The factor of 87.6 in 
+Equation \ref{gas_transfer_def} is due to a unit conversion from $cm \cdot hour^{-1}$.) From here, 
+Henry's constant $H(T)$ is used, which relates for a given temperature, the concentration of gas in 
+a liquid to its partial pressure via
 
 \begin{equation}
 H(T) = \frac{[CO_2]}{pCO_2}.
+\label{henrys_constant_def}
 \end{equation}
 
 \begin{figure} [ht]
 \centering
-\includegraphics[width=85mm]{figures/solubility_co2_water.png}
+\includegraphics[width=90mm]{figures/solubility_co2_water.png}
 \caption{The solubility of carbon dioxide in water as a function of temperature. Image from 
-(reference)}
+\cite{Toolbox}}
 \label{solubility_co2_water}
 \end{figure}
 
-$H(T)$ is a constant for a given temperature, so we can obtain a value for it by looking at a 
+$H(T)$ is a constant for a given temperature, so a value for it can be obtained by looking at a 
 simple system with still water and gaseous $\text{CO}_2$ at a pressure of one atmosphere above it. 
-The 
-partial pressure is then one atmosphere (approximately the atmospheric pressure P) and the 
-concentration of $\text{CO}_2$ in the water is then simply the solubility of the water at this 
-temperature. 
-The solubility of $\text{CO}_2$ in water is shown in Figure 2. We approximate the solubility in 
-this 
-temperature range as;
+The partial pressure is then one atmosphere (approximately the surface atmospheric pressure $P$) 
+and the concentration of $\text{CO}_2$ in the water is then simply the solubility of the water at 
+this temperature. The solubility of $\text{CO}_2$ in water is shown in Figure 
+\ref{solubility_co2_water}, which motivates an approximation of the solubility in this 
+temperature range as
 
 \begin{equation}
-S(t) = \frac{1000}{44} \cdot (22.4 - 0.07T),
+S(t) = \frac{1000}{44} \cdot (22.4 - 0.07T).
+\ref{solubility}
 \end{equation}
 
-where the numerical pre-factor is a unit conversion from $g \cdot kg^{-1}$ into $mol \cdot m^{-3}$ 
-assuming a constant density of water of 1000 $kg m^{-3}$.
+(The numerical pre-factor is a unit conversion from $g \cdot kg^{-1}$ into $mol \cdot m^{-3}$ 
+assuming a constant density of water of $1000 kg m^{-3}$.)
 
-From this we obtain
+Combining Equations \ref{henrys_constant_def} and \ref{solubility} gives
 
 \begin{equation}
 H(T) = \frac {1000 \cdot (22.4 - 0.07)}{44 \cdot P}.
 \end{equation}
 
-Using Henry's constant, we can now write (1) as
+Using Henry's constant, Equation \ref{delta_co2} can be rewritten as
 
 \begin{equation}
 F_{SST} = H(T)k(v) \lbrace pCO_2^{ocean} - pCO_2^{air} \rbrace,
 \end{equation}
 
-where $pCO_2$ is the partial pressure of $\text{CO}_2$. We are now able to use the results of 
-(reference) to 
-parametrise the $pCO_2$ as
+where $pCO_2$ is the partial pressure of $\text{CO}_2$. In order to progress further, I make  use 
+of the results of \cite{Takahashi1993} to parametrise the $pCO_2$ as
 
 \begin{equation}
 pCO_2^{ocean} = A e^{0.0423T},
 \end{equation}
 
-where A is a parameter to be chosen later. 
+where $A$ is a parameter to be chosen later. 
 
 Finally, assuming a constant mole fraction of $\text{CO}_2$ in the atmosphere, $f$, gives
 
@@ -197,28 +207,29 @@ Finally, assuming a constant mole fraction of $\text{CO}_2$ in the atmosphere, $
 pCO_2^{air} = fP,
 \end{equation}
 
-where $P$ here is the atmospheric pressure. 
+where $P$ here is the atmospheric pressure at the surface of the ocean. 
 
-This allows us to write the following equation for the flux due to the SST in terms of variables 
-for which there is a large quantity of data. 
+This gives an carbon flux due to SST of the form
 
-(perhaps mention the data to get all this in terms of earlier than now!)
+\begin{equation}
+F_{SST} = Hk \lbrace Ae^{0.0423T} - fP \rbrace
+\label{sst_equation}
+\end{equation}
 
 \subsection{Flux due to Upwelling}
 
-We expect the upwelling to have an effect on the $\text{CO}_2$ flux because the deep water is far 
-cooler 
-and richer in $\text{CO}_2$ than the water in the mixed layer (reference). As this water is brought 
-to the 
-surface, it warms up, and releases some of the $\text{CO}_2$ contained within it. 
+The upwelling is expected to have an effect on the $\text{CO}_2$ flux because the deep water is far 
+cooler and richer in $\text{CO}_2$ than the water in the mixed layer (Figure 
+\ref{TempDepthProfile}). As this water is brought to the surface, it warms up, and releases some of 
+the $\text{CO}_2$ contained within it. 
 
-We can quickly estimate the amount of $\text{CO}_2$ released per unit area in this process as being 
-equal to 
-the amount of carbon dioxide released per unit volume multiplied by the upwelling velocity, $w$. We 
-calculate the amount of carbon released per unit volume as the change in the concentration of 
-$\text{CO}_2$. 
+The amount of $\text{CO}_2$ released per unit area in this process is roughly estimated as being 
+equal to the amount of carbon dioxide released per unit volume multiplied by the upwelling 
+velocity, $w$. The amount of carbon released per unit volume is calculated as the change in the 
+concentration of $\text{CO}_2$, and I make the assumption that the deep ocean water is saturated 
+for a partial pressure $fP$. 
 
-As before, we estimate the concentration as $[CO_2] = H \cdot pCO_2^{air}$ giving us
+As before, the concentration is estimated as $[CO_2] = H \cdot pCO_2^{air}$ giving
 
 \begin{equation}
 [CO_2] = \frac{f \cdot 1000 \cdot (22.4 - 0.07T)}{44},
@@ -237,76 +248,81 @@ Finally, this results in a flux due to an upwelling velocity of $w$ of
 
 \begin{equation}
 F_{upwelling} = \frac{70 \cdot f \cdot \Delta T}{44}.
+\label{upwelling_equation}
 \end{equation}
 
 \subsection{Whole Model}
 
-Combining these two contributions, we obtain the following equation which will serve as the basis 
-for all of the calculations in this paper;
+Adding the contribution from SST, (Equation \ref{sst_equation}), and the contribution from 
+upwelling (Equation \ref{upwelling_equation}), gives the following equation for the total carbon 
+flux 
 
 \begin{equation}
-\begin{split}
-F_{total} & = F_{SST} + F_{upwelling} \\
-    & = H k \cdot \lbrace A e^{\alpha T} - fP \rbrace + \frac{70f \Delta T w}{44}
-\end{split}
+F_{total} = H k \cdot \lbrace A e^{\alpha T} - fP \rbrace + \frac{70f \Delta T w}{44}.
+\label{general_equation}
 \end{equation}
 
 \subsection{Estimation of Upwelling Rate}
 
-Equation (13) serves as a clear and physically intuitive description of the effects that we will be 
-considering, however, this form of the equation is difficult to use in practice as the upwelling 
-rate $w$ is very small and is almost never measured, and modelled only rarely. This lack of data 
-makes it necessary for us to construct a simple model t approximate the value of $w$ from variables 
-for which data is more available. 
+Equation \ref{general_equation} serves as a clear and physically intuitive description of the 
+processes assumed to drive the carbon flux, however, this form of the equation is difficult to use 
+in practice as the upwelling rate $w$ is very small and so is almost never measured. This lack of 
+data makes it necessary for us to construct a simple model to approximate the value of $w$ from 
+variables for which data is more available. 
 
-We are interested in effects on or very close to the equator, and therefore are considering points 
-which are at almost the sane latitude. Additionally, near the equator we cn assume that currents 
-will predominantly run along the equator rather than across it. These two factors lead us to 
-approximate that if there was no upwelling anywhere else in the basin, we would expect to see vey 
-similar temperature profile at any point in the basin This is not what is observed, and so we make 
-the approximation that the deviations are due to upwelling cold water. A useful variable for us to 
-use here is the heat content of the water per unit area (calculated as an integral of the heat 
-content over the top 300m of the ocean). From  our model of the dynamics in the Pacific basin, we 
-expect to see very little upwelling in the west of the basin, and so we assume that the  heat 
-content here is what we would expect to find in the absence of upwelling. This will be our 
-reference heat content ($Heat_{reference}$). At all other points, we can then calculate a heat 
-difference, finding that the heat content is lower in the east of the basin. Using our model of a 
-two layer ocean, we can then work out the volume of deep ocean water needed in order to explain the 
-heat difference. 
+The region of interest is a narrow strip close to the equator, and therefore all of the data is 
+taken from points with very similar latitudes. Additionally, near the equator currents predominantly 
+run along the equator rather than across it. These two factors motivate the assumption that if there 
+was no upwelling anywhere in the basin, the temperature profile with depth should be identical 
+anywhere in the basin. This is not what is observed, and so we make the approximation that the 
+deviations are due to upwelling cold water. 
+
+A useful variable to use here is the heat content of the water per unit area (calculated as 
+an integral of the heat content over the top $300m$ of the ocean). The model of the 
+dynamics in the Pacific basin presented in the introduction suggests that there should be very 
+little upwelling in the west of the basin, and so I make the assumption that the heat content here 
+is what we would expect to find in the absence of upwelling. This will be our 
+reference heat content ($Heat_{ref}$). At all other points, a heat difference is then calculated, 
+finding that the heat content is lower in the east of the basin. Figure 
+\ref{upwelling_model_diagram} illustrates a rough method of converting this heat difference into an 
+upwelling rate.
 
 \begin{figure} [ht]
 \centering
-\includegraphics[width=85mm]{figures/solubility_co2_water.png}
-\caption{Left, an idealsied model of the west of the basin, where there is no upwelling. Right, I 
-approximate the difference in the heat content as being due to an extra depth of cold water $x$.}
+\includegraphics[width=90mm]{figures/masters_diagram.png}
+\caption{On the left is an idealised model of the west of the basin, where there is no upwelling. 
+There are two layers in the ocean, with a depth $d$ of warm water, and the remainder of the $330m$ 
+is colder, deep water. On the right, representing the east of the basin, where the heat content is 
+lower, we attribute the heat difference to an extra depth $x$ of cold water.}
 \label{upwelling_model_diagram}
 \end{figure}
 
 \begin{equation}
 \begin{split}
-Heat_{ref} = & \rho c d T_{hot} + \rho c (D - d)T_{cold}\\
-Heat_{actual} = & \rho c (d-x)T_{hot} + \rho c (D-d+x)T_{cold}\\
+Heat_{ref} = & \rho c d T_{hot} + \rho c (300 - d)T_{cold}\\
+Heat_{actual} = & \rho c (d-x)T_{hot} + \rho c (300-d+x)T_{cold}\\
 \Delta Heat = & Heat_{ref} - Heat_{actual}\\
     = & mcx \Delta T
 \end{split}
 \end{equation}
 
-where $\rho$ is the density of water, $c$, is the specific heat capacity of water, and we have 
+where $\rho$ is the density of water, $c$, is the specific heat capacity of water, and I have 
 defined $\Delta T = T_{hot} - T_{cold}$.
 
-We now rearrange to find the cold water volume $V_{coldwater}$.
+Rearranging to find the extra depth of cold water $x$
 
 \begin{equation}
-V_{coldwater} = \frac{\Delta Heat}{\rho c \Delta T}
+x = \frac{\Delta Heat}{\rho c \Delta T}
 \end{equation}
 
-Finally, we now introduce a parameter, $R$, the replenishment rate, which represents the frequency 
-with which the cold water volume is replaced. 
+In order to obtain an upwelling velocity from the additional depth of cold water, I introduce a 
+parameter, $R$, the replenishment rate, which represents the frequency with which that depth of 
+cold water is replaced.
 
-From this, we calculate the upwelling rate, $w$, as;
+From this, the upwelling rate, $w$, can be calculated as
 
 \begin{equation}
-w = \frac{R \cdot \Delta Heat}{\rho c \Delta T}
+w = \frac{R \cdot \Delta Heat}{\rho c \Delta T}.
 \end{equation}
 
 \subsection{Fitting Model Parameters to Data}
@@ -350,7 +366,7 @@ diagnostic to describe ENSO. It is a common practice (change wording here) to ch
 all variables in terms of thermocline depth, (reference or change) and is convenient for us 
 to take this approach.
 
-For this paper, I use data taken from (reference). The TAO data is gathered from a 
+For this paper, I use data taken from \cite{TAO}. The TAO data is gathered from a 
 system of buoys in the Pacific which cover a region from 8N to 8S, and from 137E to 110W. These 
 buys gather data daily, and records go back to about 1960, although  gaps in the data are frequent, 
 especially early in the time series. The data set does not include data for the thermocline depth 
@@ -368,9 +384,8 @@ and a line of best fit. The results are shown in Table 1 and Figure 4.
 
 \begin{figure} [ht]
 \centering
-\includegraphics[width=85mm]{figures/scatter_plot_SST_vs_isotherm.png}
-\caption{The solubility of carbon dioxide in water as a function of temperature. Image from 
-(reference)}
+\includegraphics[width=90mm]{figures/scatter_plot_SST_vs_isotherm.png}
+\caption{Scatter plot of the anomaly in SST against the anomaly in isotherm depth.}
 \label{scatter_plot_SST_vs_isotherm}
 \end{figure}
 
@@ -386,7 +401,8 @@ parameter.
 
 We now wish to demonstrate our ability to generate a prediction of the carbon flux based on a 
 dynamical model 
-of ENSO. In this case, we shall use the simple model of ENSO proposed in (reference). This model is 
+of ENSO. In this case, we shall use the simple model of ENSO proposed in \cite{Tziperman1994}. This 
+model is 
 excellent for our purposes as it is one of the simplest which still exhibits the low order chaotic 
 behaviour that we observe, has a time period which approximately agrees with observation, and shows 
 seasonal locking. It also characterises ENSO in terms of the thermocline depth alone. 
@@ -424,7 +440,7 @@ required distance;
 Here, $L$ is the width of the Pacific basin, and $C_{Kelvin}$ and $C_{Rossby}$ are the speeds of 
 the Kelvin and Rossby waves respectively. 
 
-We use the form suggested of $A$ in (reference) of;
+We use the form suggested of $A$ in \cite{Munnich1991} of;
 
 \begin{equation}
 look up how to do this again!!!
@@ -432,21 +448,23 @@ look up how to do this again!!!
 
 \begin{figure} [ht]
 \centering
-\includegraphics[width=85mm]{figures/scatter_plot_SST_vs_isotherm.png}
-\caption{Form of $A[h]$ given by equation(label). Image from (reference)}
+\includegraphics[width=90mm]{figures/form_of_a.png}
+\caption{Form of $A[h]$ given by equation(label). Image from \cite{Munnich1991}}
 \label{form_of_A}
 \end{figure}
 
 \begin{figure} [ht]
 \centering
-\includegraphics[width=85mm]{figures/correlation_map_sst.png}
+\includegraphics[width=90mm]{figures/correlation_map_sst.png}
 \caption{A plot of the correlation between SST and isotherm depth.}
 \label{correlation_map}
 \end{figure}
 
 The predicted for of ENSO varies greatly depending on the choice of parameters. For a full 
-discussion of how the parameters affect the model, see (reference) and (reference), for our 
-purposes, we shall choose the parameters to be as in (reference) with $\kappa = 2.0$. This choice 
+discussion of how the parameters affect the model, see \cite{Tziperman1994} and \cite{Munnich1991}, 
+for our 
+purposes, we shall choose the parameters to be as in \cite{Tziperman1994} with $\kappa = 2.0$. This 
+choice 
 of parameters gives us the best possible mix of period of oscillation, seasonal locking, and 
 chaotic behaviour. Figure 6 shows a plot of the time series of this model against the observed 
 data. 
@@ -462,7 +480,7 @@ data.
 
 We start by presenting the observed flux in Figure 7. We shall use this to evaluate the success of 
 our model. In Figure 8 we present a plot of the model time averaged carbon flux over the whole of 
-the basin. These plots have been created using Equation 17 with observation data from (reference) 
+the basin. These plots have been created using Equation 17 with observation data from \cite{TAO}
 to create a carbon flux map for each month since 1979. We not that while there was sufficient data 
 for SST, heat content, isotherm depth and wind speed, the data for pressure does not exist for many 
 of the grid points. In order to preserve enough data points, we have made the assumption that 
@@ -475,15 +493,15 @@ carbon dioxide out of the ocean.
 
 \begin{figure} [ht]
 \centering
-\includegraphics[width=85mm]{figures/observed_time_averaged_flux.png}
-\caption{Observational time averaged carbon flux. Data from (reference). The highlighted box 
+\includegraphics[width=90mm]{figures/observed_time_averaged_flux.png}
+\caption{Observational time averaged carbon flux. Data from \cite{TAO}. The highlighted box 
 represents our region of interest for this project.}
 \label{observed_time_averaged_flux}
 \end{figure}
 
 \begin{figure} [ht]
 \centering
-\includegraphics[width=85mm]{figures/zoomed_time_average_flux.png}
+\includegraphics[width=90mm]{figures/zoomed_time_average_flux.png}
 \caption{A comparison of the observed carbon flux and the carbon flux given by the model.}
 \label{zoomed_time_averaged_flux}
 \end{figure}
@@ -495,7 +513,7 @@ latitude of 4S, where the data suggests that the effect of ENSO is large.
 
 \begin{figure} [ht]
 \centering
-\includegraphics[width=85mm]{figures/flux_at_one_latitude.png}
+\includegraphics[width=90mm]{figures/flux_at_one_latitude.png}
 \caption{A comparison of the carbon flux across the basin at 4S shown in the data and predicted by 
 the model.}
 \label{flux_at_one_latitude}
@@ -511,7 +529,7 @@ shows the plots for the carbon flux as a function of time.
 
 \begin{figure} [ht]
 \centering
-\includegraphics[width=85mm]{figures/carbon_flux.png}
+\includegraphics[width=90mm]{figures/carbon_flux.png}
 \caption{The carbon flux predicted by the model.}
 \label{carbon_flux}
 \end{figure}
@@ -525,7 +543,7 @@ based on all of the data and a plot based only on the historic isotherm depth.
 
 \begin{figure} [ht]
 \centering
-\includegraphics[width=85mm]{figures/carbon_flux_east_vs_west.png}
+\includegraphics[width=90mm]{figures/carbon_flux_east_vs_west.png}
 \caption{A comparison of the carbon flux in the east and west of the basin.}
 \label{carbon_flux_east_vs_west}
 \end{figure}
@@ -538,7 +556,7 @@ fluctuations are in line with the observed values. Figure 12 shows the result of
 
 \begin{figure} [ht]
 \centering
-\includegraphics[width=85mm]{figures/carbon_flux_isotherm_depth.png}
+\includegraphics[width=90mm]{figures/carbon_flux_isotherm_depth.png}
 \caption{Time series of the carbon flux at (0N, 110W) based on (a) model with all variables from 
 data and (b) all variables paratrised in terms of isotherm height.}
 \label{carbon_flux_iostherm_depth}
@@ -546,7 +564,7 @@ data and (b) all variables paratrised in terms of isotherm height.}
 
 \begin{figure} [ht]
 \centering
-\includegraphics[width=85mm]{figures/model_iso_carbon_flux.png}
+\includegraphics[width=90mm]{figures/model_iso_carbon_flux.png}
 \caption{The flux at the grid point (0N, 110W) based on a model for the thermocline height. Plotted 
 are lines representing the total carbon flux, the contribution due to SST,and the contribution due 
 to the upwelling.}
@@ -591,7 +609,7 @@ westwards flow is best, we obtain the results which best match observation.
 
 \begin{figure} [ht]
 \centering
-\includegraphics[width=80mm]{figures/Ocean_surface_currents.jpg}
+\includegraphics[width=85mm]{figures/Ocean_surface_currents.jpg}
 \caption{Map of the ocean surface currents. (reference)}
 \label{Ocean_surface_currents}
 \end{figure}
@@ -649,6 +667,40 @@ possible given more time, it may not affect the end result significantly. Furthe
 interesting to examine the possibility of using this low order model in conjunction with a much 
 more complex climate model, either to help analyse the output of the climate model, or to help 
 increase the speed of the model by making use of some of the relationships discovered here. 
+
+\begin{thebibliography}{10}
+
+\bibitem{UKMO} The UK Met Office : El Nino, La Nina and the Southern Oscillation. Available at 
+http://www.metoffice.gov.uk/research/climate/seasonal-to-decadal/gpc-outlooks/el-nino-la-nina/enso-d
+escription (Accessed 26 April 2014)
+
+\bibitem{TempProfile} Hurricanes: Science and Society. Available at 
+http://www.hurricanescience.org/science/observation/ships/ships/ (Accessed 26 April 2014)
+
+\bibitem{TAO} Tropical Ocean Atmosphere Project. Available at http://www.pmel.noaa.gov/tao/ 
+(Accessed 30 March 2014)
+
+\bibitem{Bjerkness1969} J. Bjerknes, Atmospheric Teleconnerctions from the Equatorial Pacific, 
+\textit{Monthly Weather Review}, \textbf{97}, 163-172 (1969).
+
+\bibitem{Toolbox} The Engineering Toolbox. Available at 
+http://www.engineeringtoolbox.com/gases-solubility-water-d\_1148.html. (Accessed 30 March 2014)
+
+\bibitem{Jeffery2009} C.D. Jeffery, I.S. Robinson, D.K. Woolf, Tuning a Physically Based Model of 
+the Air-Sea Gas Transfer Velocity, \textit{Ocean Modelling}, \textbf{31}, 28-35. (2009)
+
+\bibitem{Takahashi1993} T. Takahashi, Surface Variation of CO2 and Nutrients in the High Latitude 
+Surface Oceans: A Comparative Study, \textit{Global Biochemical Studies}, \textbf{7}, 843-878 (1993)
+
+\bibitem{Tziperman1994} E. Tziperman, L. Stone, M.A. Cane, H Jarosh, El Nino Chaos: Overlapping of 
+Resonances Between the Seasonal Cycle and the Pacific Ocean Atmosphere Oscillator, 
+\textit{Science}, \textbf{264} 72-74 (1994)
+
+\bibitem{Munnich1991} M. Munnich, M.A. Cane, S.E. Zebiak, A Study of Self-Excited Oscillations of 
+the Tropical Ocean Atmosphere System. Part II: Nonlinear Cases. \textit{J. Atmos. Sci.} 
+\textbf{48}, 1238-1248 (1991)
+
+\end{thebibliography}
 
 \end{document}
 
