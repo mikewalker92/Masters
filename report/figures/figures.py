@@ -23,24 +23,27 @@ import the required modules
 '''
 
 import iris
+import iris.plot as iplt
 import iris.quickplot as qplt
 import cartopy.crs as ccrs
 import matplotlib.pyplot as plt
 import numpy as np
+import scipy.stats
 
 import masters_library as lib
 
-show1 = True
-show2 = True
-show3 = True
-show4 = True
-show5 = True
-show6 = True
-show7 = True
-show8 = True
-show9 = True
-show10 = True
-show11 = True
+show1 = False
+show2 = False
+show3 = False
+show4 = False
+show5 = False
+show6 = False
+show7 = False
+show8 = False
+show9 = False
+show10 = False
+show11 = False
+show12 = True
 
 '''
 --------------------------------------------------------------------------------
@@ -73,7 +76,8 @@ means_wind = iris.load(file_location)[11]
 # We also load the data file containing the observed global CO2 flux.
 
 filename = '/home/michael/git/Masters/report/figures/global_flux.nc'
-global_flux = iris.load_cube(filename)
+global_flux = iris.load_cube(filename)    
+global_flux.units = 'mol m-2 yr-1'
 
 
 '''
@@ -85,7 +89,7 @@ start_year = lib.start_year
 
 selected_lat = 3
 selected_lon = 8
-heat_ref = heat[4,2].collapsed('time', iris.analysis.MEAN)
+heat_ref = heat[2,2].collapsed('time', iris.analysis.MEAN)
 
 selected_lat2 = 3
 selected_lon2 = 3
@@ -96,6 +100,7 @@ R = 5000.
 a = 0.0423
 rho = 1000.
 c = 4.18e6
+scale_factor = 80
 
 pressure_const = 101000
 
@@ -108,13 +113,11 @@ const = {'f':f,
          'rho':rho,
          'c':c,
          'selected_lat' : selected_lat,
-         'selected_lon' : selected_lon}
+         'selected_lon' : selected_lon,
+         'scale_factor' : scale_factor}
 
-nino_time = 500
-nina_time = 600
-
-nino_date = start_year + nino_time / 12
-nina_date = start_year + nina_time / 12
+nino_time = 456
+nina_time = 469
 
 
 '''
@@ -127,7 +130,7 @@ if show1:
     # We must reduce our 3 dimensional cubes to 1 dimension.
     # We first specify only data along the equator.
 
-    equator_isotherm = isotherm[4]
+    equator_isotherm = isotherm[3]
 
     # We collapse time by taking the mean, or by taking
     # particular times.
@@ -138,11 +141,13 @@ if show1:
 
     # We now plot these profiles on the same figure
 
-    qplt.plot(mean_profile, label='Mean profile', color='green')
+    qplt.plot(mean_profile, label='Normal Conditions', color='green')
     qplt.plot(nino_profile, label='Profile during El Nino', color='red')
     qplt.plot(nina_profile, label='Profile during La Nina', color='blue')
-    plt.legend()
+    plt.legend(loc='upper left')
+    plt.ylabel('Isotherm Depth / m')
     plt.title('Isotherm Depth Along the Equator')
+    plt.gca().invert_yaxis()
 
     plt.show()
 
@@ -160,7 +165,7 @@ if show2:
     sst_anomaly_at_point = sst_anomaly[selected_lat, selected_lon]
 
     qplt.scatter(isotherm_anomaly_at_point, sst_anomaly_at_point)
-    plt.title('Scatter Plot of SST Anomaly against Isotherm Anomaly')
+    plt.title('Scatter Plot of SST Anomaly against Isotherm Depth Anomaly')
     plt.show()
 
 '''
@@ -173,17 +178,26 @@ if show3:
 
     filename = '/home/michael/git/Masters/report/figures/enso_model.nc'
     model_cube = iris.load_cube(filename)
+    model_cube = model_cube * scale_factor
     model_data = model_cube.data
     plot_start = 75000
-    plot_end = 90000
+    plot_end = 86000
 
     observed_data = isotherm_anomaly[selected_lat, selected_lon]
 
     plt.subplot(2,1,1)
-    plt.plot(model_data[plot_start:plot_end])
+    year = [point/360. + plot_start/360. for point in xrange(len(model_data[plot_start:plot_end]))]
+    plt.plot(year, model_data[plot_start:plot_end])
+    plt.ylabel('Thermocline Depth Anomaly / m')
+    plt.xlabel('Time Since Model Start / years')
+    plt.title('Modelled Anomaly in Thermocline Depth')
 
     plt.subplot(2,1,2)
-    qplt.plot(observed_data)
+    year = [start_year + point/12. for point in xrange(len(observed_data.data))]
+    plt.plot(year, observed_data.data)
+    plt.title('Observed Anomaly in 20C Isotherm Depth')
+    plt.xlabel('Time / Years')
+    plt.ylabel('20C Isotherm Depth Anomaly / m')
    
     plt.show()
     
@@ -202,7 +216,7 @@ if show4:
     plate_carree = ccrs.PlateCarree(central_longitude = 180)
     ax = plt.axes(projection=plate_carree)
     
-    qplt.pcolormesh(global_flux)
+    qplt.pcolormesh(global_flux, vmin=-5, vmax=5)
     plt.gca().coastlines()
     plt.title('Observed Time Averaged Carbon Flux')
     
@@ -238,7 +252,7 @@ if show5 or show6 or show7 or show8 or show9:
         
         ax = plt.subplot(211, projection=plate_carree)
         
-        qplt.pcolormesh(global_flux)
+        iplt.pcolormesh(global_flux, vmin=-5, vmax=5)
         plt.gca().coastlines()
         plt.title('Observed Time Averaged Carbon Flux')
         plt.xlim(-50, 95)
@@ -246,7 +260,8 @@ if show5 or show6 or show7 or show8 or show9:
         
         ax = plt.subplot(212, projection=plate_carree)
         
-        qplt.pcolormesh(mean_flux)
+        mean_flux.units='mol m-2 yr-1'
+        qplt.pcolormesh(mean_flux, vmin=-5, vmax=5)
         plt.gca().coastlines()
         plt.title('Model Time Averaged Carbon Flux')
         plt.xlim(-50, 95)
@@ -263,13 +278,15 @@ if show6:
     
     # We now collapse this cube to show its value at around 4S.
     
-    flux_4s_model = mean_flux[5]
+    flux_4s_model = mean_flux[3]
     flux_4s_observed = global_flux[21]
     
-    qplt.plot(flux_4s_model, label='Model Flux')
-    qplt.plot(flux_4s_observed, label='Observed_flux')
-    plt.xlim(130, 250)
-    plt.legend()
+    qplt.plot(flux_4s_model, label='Modelled Carbon Flux')
+    qplt.plot(flux_4s_observed, label='Observed Carbon Flux')
+    plt.xlim(147, 265)
+    plt.ylabel('Carbon Flux / mol m-2 yr-1')
+    plt.title('Flux of Carbon at 2 Degrees South')
+    plt.legend(loc='upper left')
     
     plt.show()
     
@@ -290,9 +307,13 @@ if show7:
     flux_upwelling_point = flux_upwelling[selected_lat, selected_lon]
     flux_total_point = flux_total[selected_lat, selected_lon]
     
-    qplt.plot(flux_sst_point, label='Carbon Flux due to SST')
-    qplt.plot(flux_upwelling_point, label='Carbon Flux due to Upwelling')
-    qplt.plot(flux_total_point, label='Total Carbon Flux')
+    time = [start_year + point/12. for point in xrange(len(flux_total_point.data))]
+    plt.plot(time, flux_sst_point.data, label='Carbon Flux due to SST')
+    plt.plot(time, flux_upwelling_point.data, label='Carbon Flux due to Upwelling')
+    plt.plot(time, flux_total_point.data, label='Total Carbon Flux')
+    plt.title('Modelled Carbon Flux Time Series')
+    plt.xlabel('Time / years')
+    plt.ylabel('Carbon Flux / mol m-2 yr-1')
     plt.legend()
     plt.show()
 
@@ -309,8 +330,13 @@ if show8:
     flux_west = flux_total[selected_lat2, selected_lon2]
     flux_east = flux_total[selected_lat, selected_lon]
     
-    qplt.plot(flux_west, label='Carbon Flux in West of Basin')
-    qplt.plot(flux_east, label='Carbon Flux in East of Basin')
+    time = [start_year + point/12. for point in xrange(len(flux_west.data))]
+    
+    plt.plot(time, flux_west.data, label='Carbon Flux in West of Basin')
+    plt.plot(time, flux_east.data, label='Carbon Flux in East of Basin')
+    plt.title('Comparison of Carbon Flux in East and West Eqautorial Pacific')
+    plt.xlabel('year')
+    plt.ylabel('Carbon Flux / mol m-2 yr-1')
     plt.legend()
     plt.show()
     
@@ -347,8 +373,12 @@ if show9 or show10 or show11:
         flux_total = predictions[0]
         flux_total_point = flux_total[selected_lat, selected_lon]
         
-        qplt.plot(flux_iso, label='Flux based on Isotherm Depth')
-        qplt.plot(flux_total_point, label='Flux based on all variables')
+        time = [start_year + point/12. for point in xrange(len(flux_total_point.data))]
+        plt.plot(time, flux_iso.data, label='Flux based on Isotherm Depth')
+        plt.plot(time, flux_total_point.data, label='Flux based on all variables')
+        plt.title('Comparison of Methods of Estimating Carbon Flux')
+        plt.xlabel('year')
+        plt.ylabel('Carbon Flux / mol m-2 yr-1')
         plt.legend()
         plt.show()
 
@@ -362,10 +392,11 @@ if show10:
 
     filename = '/home/michael/git/Masters/report/figures/enso_model.nc'
     model_output = iris.load_cube(filename)
+    model_output = model_output * scale_factor
     
-    model_output = model_output[90000:91000]
-    
-    flux_cubes = lib.calculate_flux_iso_data(model_output, correlation_data, const)
+    model_output = model_output[75000:86000]
+
+    flux_cubes = lib.calculate_flux_iso_model(model_output, correlation_data, const)
     
     flux_total = flux_cubes[0]
     flux_sst = flux_cubes[1]
@@ -374,6 +405,9 @@ if show10:
     qplt.plot(flux_total, label='Total Carbon Flux')
     qplt.plot(flux_sst, label='Carbon Flux due to SST')
     qplt.plot(flux_upwelling, label='Carbon Flux due to Upwelling')
+    plt.title('Carbon Flux Based on Model of Thermocline Depth Anomaly')
+    plt.xlabel('Time since model start / years')
+    plt.ylabel('Carbon Flux / mol m-2 yr-1')
     plt.legend()
     plt.show()
 
@@ -388,9 +422,60 @@ if show11:
     
     pmcc = sst_correlations[0]
     
+    cube = sst_anomaly[:,:,0]
+    cube.data = pmcc.data
+    cube.units = None
+    
     ax = plt.axes(projection=ccrs.PlateCarree(central_longitude=180))
-    qplt.pcolormesh(pmcc)
+    
+    qplt.pcolormesh(cube,cmap='brewer_Reds_09', vmax=1, vmin=0)
+    plt.title('PMCC between SST Anomaly and Isotherm Depth Anomaly')
     ax.coastlines
+    grid = plt.gca().gridlines(draw_labels=True)
+    grid.xlabels_top=False
+    # Add a citation to the plot.
+    iplt.citation(iris.plot.BREWER_CITE)
+    
     plt.show()
 
+'''
+--------------------------------------------------------------------------------
+Figure 12: SST anomaly El Nino vs La Nina
+--------------------------------------------------------------------------------
+'''
 
+if show12:
+    
+    el_nino = sst_anomaly[:,:,nino_time]
+    la_nina = sst_anomaly[:,:,nina_time]
+    
+    plate_carree = ccrs.PlateCarree(central_longitude = 180)
+    
+    plt.subplot(211, projection=plate_carree)
+    
+    iplt.pcolormesh(el_nino, vmin = -4, vmax = 4)
+    plt.title('SST Anomaly during an El Nino Event')
+    plt.gca().coastlines
+    
+    plt.subplot(212, projection=plate_carree)
+    
+    qplt.pcolormesh(la_nina, vmin = -4, vmax = 4)
+    plt.title('SST Anomaly during a La Nina Event')
+    plt.gca().coastlines
+    
+    plt.show()
+    
+'''
+--------------------------------------------------------------------------------
+Figure 13: Temp Profile
+--------------------------------------------------------------------------------
+'''
+
+if show13:
+    
+    filename = '/home/michael/git/Masters/Tz/Tz.nc'
+    tz = iris.load_cube(filename)
+    
+    plt.plot(tz)
+    plt.invert_yaxis
+    

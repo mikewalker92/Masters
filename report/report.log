@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.4.22)  26 APR 2014 23:00
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.4.22)  27 APR 2014 12:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -250,7 +250,18 @@ File: figures/TempDepthProfile.jpg Graphic file (type jpg)
 
 <use figures/TempDepthProfile.jpg>
 Package pdftex.def Info: figures/TempDepthProfile.jpg used on input line 53.
-(pdftex.def)             Requested size: 241.84842pt x 293.9049pt.
+(pdftex.def)             Requested size: 256.0748pt x 311.19603pt.
+
+Overfull \hbox (11.74352pt too wide) in paragraph at lines 53--54
+ [][] 
+ []
+
+<figures/el_nino_la_nina.png, id=2, 578.8827pt x 376.5267pt>
+File: figures/el_nino_la_nina.png Graphic file (type png)
+
+<use figures/el_nino_la_nina.png>
+Package pdftex.def Info: figures/el_nino_la_nina.png used on input line 60.
+(pdftex.def)             Requested size: 241.84842pt x 157.30705pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -258,294 +269,280 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 ]
-<figures/isotherm_depth_along_the_equator.png, id=13, 578.16pt x 433.62pt>
+<figures/isotherm_depth_along_the_equator.png, id=15, 578.16pt x 433.62pt>
 File: figures/isotherm_depth_along_the_equator.png Graphic file (type png)
 
 <use figures/isotherm_depth_along_the_equator.png>
 Package pdftex.def Info: figures/isotherm_depth_along_the_equator.png used on i
-nput line 75.
+nput line 83.
 (pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
 
-Overfull \hbox (11.74352pt too wide) in paragraph at lines 75--79
+Overfull \hbox (11.74352pt too wide) in paragraph at lines 83--87
  [][] 
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 5771) has occurred while \output is active []
 
- [2 <./figures/TempDepthProfile.jpg> <./figures/isotherm_depth_along_the_equato
-r.png>]
-<figures/solubility_co2_water.png, id=19, 280.4076pt x 262.3401pt>
+ [2 <./figures/TempDepthProfile.jpg> <./figures/el_nino_la_nina.png>]
+<figures/solubility_co2_water.png, id=20, 280.4076pt x 262.3401pt>
 File: figures/solubility_co2_water.png Graphic file (type png)
 
 <use figures/solubility_co2_water.png>
-Package pdftex.def Info: figures/solubility_co2_water.png used on input line 16
-1.
+Package pdftex.def Info: figures/solubility_co2_water.png used on input line 17
+4.
 (pdftex.def)             Requested size: 256.0748pt x 239.57448pt.
 
-Overfull \hbox (11.74352pt too wide) in paragraph at lines 161--163
+Overfull \hbox (11.74352pt too wide) in paragraph at lines 174--176
  [][] 
  []
 
-
-LaTeX Warning: Reference `solubility' on page 3 undefined on input line 177.
-
-
-LaTeX Warning: Reference `solubility' on page 3 undefined on input line 183.
-
-
-Underfull \hbox (badness 1383) in paragraph at lines 189--190
+[3 <./figures/isotherm_depth_along_the_equator.png> <./figures/solubility_co2_w
+ater.png (PNG copy)>]
+Underfull \hbox (badness 1383) in paragraph at lines 202--203
 []\OT1/cmr/m/n/10.95 Using Henry's con-stant, Equa-tion 1[] can be
  []
 
-[3 <./figures/solubility_co2_water.png (PNG copy)>]
-<figures/masters_diagram.png, id=27, 395.076pt x 218.61674pt>
+[4] <figures/masters_diagram.png, id=32, 395.076pt x 218.61674pt>
 File: figures/masters_diagram.png Graphic file (type png)
 
 <use figures/masters_diagram.png>
-Package pdftex.def Info: figures/masters_diagram.png used on input line 289.
+Package pdftex.def Info: figures/masters_diagram.png used on input line 305.
 (pdftex.def)             Requested size: 256.0748pt x 141.70222pt.
 
-Overfull \hbox (11.74352pt too wide) in paragraph at lines 289--291
+Overfull \hbox (11.74352pt too wide) in paragraph at lines 305--309
  [][] 
  []
 
-[4]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 334.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 356.
 
- (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 334.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 356.
  [5 <./figures/masters_diagram.png>]
-<figures/scatter_plot_SST_vs_isotherm.png, id=34, 578.16pt x 433.62pt>
+<figures/scatter_plot_SST_vs_isotherm.png, id=36, 578.16pt x 433.62pt>
 File: figures/scatter_plot_SST_vs_isotherm.png Graphic file (type png)
 
 <use figures/scatter_plot_SST_vs_isotherm.png>
 Package pdftex.def Info: figures/scatter_plot_SST_vs_isotherm.png used on input
- line 381.
+ line 423.
 (pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
 
-Overfull \hbox (11.74352pt too wide) in paragraph at lines 381--382
+Overfull \hbox (11.74352pt too wide) in paragraph at lines 423--424
  [][] 
  []
 
-<figures/form_of_a.png, id=35, 322.806pt x 259.56975pt>
+[6 <./figures/scatter_plot_SST_vs_isotherm.png>]
+<figures/form_of_a.png, id=41, 322.806pt x 259.56975pt>
 File: figures/form_of_a.png Graphic file (type png)
 
 <use figures/form_of_a.png>
-Package pdftex.def Info: figures/form_of_a.png used on input line 445.
+Package pdftex.def Info: figures/form_of_a.png used on input line 488.
 (pdftex.def)             Requested size: 256.0748pt x 205.92525pt.
 
-Overfull \hbox (11.74352pt too wide) in paragraph at lines 445--446
+Overfull \hbox (11.74352pt too wide) in paragraph at lines 488--489
  [][] 
  []
 
-<figures/correlation_map_sst.png, id=36, 578.16pt x 433.62pt>
+<figures/correlation_map_sst.png, id=42, 502.9992pt x 211.0284pt>
 File: figures/correlation_map_sst.png Graphic file (type png)
 
 <use figures/correlation_map_sst.png>
-Package pdftex.def Info: figures/correlation_map_sst.png used on input line 452
+Package pdftex.def Info: figures/correlation_map_sst.png used on input line 495
 .
-(pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
+(pdftex.def)             Requested size: 256.0748pt x 107.43951pt.
 
-Overfull \hbox (11.74352pt too wide) in paragraph at lines 452--453
+Overfull \hbox (11.74352pt too wide) in paragraph at lines 495--496
  [][] 
  []
 
-<figures/isotherm_anomaly_model.png, id=37, 578.16pt x 433.62pt>
+<figures/isotherm_anomaly_model.png, id=43, 563.706pt x 521.7894pt>
 File: figures/isotherm_anomaly_model.png Graphic file (type png)
 
 <use figures/isotherm_anomaly_model.png>
 Package pdftex.def Info: figures/isotherm_anomaly_model.png used on input line 
-468.
-(pdftex.def)             Requested size: 241.84842pt x 181.38472pt.
+509.
+(pdftex.def)             Requested size: 241.84842pt x 223.86346pt.
 
-Underfull \hbox (badness 2142) in paragraph at lines 469--469
-[]\OT1/cmr/m/n/10.95 Figure 8: Com-par-i-son of the out-put of the
- []
-
-[6 <./figures/scatter_plot_SST_vs_isotherm.png>]
-<figures/observed_time_averaged_flux.png, id=42, 578.16pt x 433.62pt>
-File: figures/observed_time_averaged_flux.png Graphic file (type png)
-
-<use figures/observed_time_averaged_flux.png>
-Package pdftex.def Info: figures/observed_time_averaged_flux.png used on input 
-line 490.
-(pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
-
-Overfull \hbox (11.74352pt too wide) in paragraph at lines 490--492
- [][] 
- []
-
-<figures/zoomed_time_average_flux.png, id=43, 578.16pt x 433.62pt>
-File: figures/zoomed_time_average_flux.png Graphic file (type png)
-
-<use figures/zoomed_time_average_flux.png>
-Package pdftex.def Info: figures/zoomed_time_average_flux.png used on input lin
-e 498.
-(pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
-
-Overfull \hbox (11.74352pt too wide) in paragraph at lines 498--499
- [][] 
- []
-
-<figures/flux_at_one_latitude.png, id=44, 578.16pt x 433.62pt>
-File: figures/flux_at_one_latitude.png Graphic file (type png)
-
-<use figures/flux_at_one_latitude.png>
-Package pdftex.def Info: figures/flux_at_one_latitude.png used on input line 51
-0.
-(pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
-
-Overfull \hbox (11.74352pt too wide) in paragraph at lines 510--512
- [][] 
- []
-
-
-Underfull \vbox (badness 1048) has occurred while \output is active []
-
-
-<figures/carbon_flux.png, id=45, 578.16pt x 433.62pt>
-File: figures/carbon_flux.png Graphic file (type png)
-
-<use figures/carbon_flux.png>
-Package pdftex.def Info: figures/carbon_flux.png used on input line 526.
-(pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
-
-Overfull \hbox (11.74352pt too wide) in paragraph at lines 526--527
- [][] 
+Underfull \hbox (badness 2142) in paragraph at lines 510--510
+[]\OT1/cmr/m/n/10.95 Figure 9: Com-par-i-son of the out-put of the
  []
 
 [7 <./figures/form_of_a.png> <./figures/correlation_map_sst.png> <./figures/iso
 therm_anomaly_model.png>]
-<figures/carbon_flux_east_vs_west.png, id=52, 578.16pt x 433.62pt>
-File: figures/carbon_flux_east_vs_west.png Graphic file (type png)
+<figures/observed_time_averaged_flux.png, id=50, 578.16pt x 433.62pt>
+File: figures/observed_time_averaged_flux.png Graphic file (type png)
 
-<use figures/carbon_flux_east_vs_west.png>
-Package pdftex.def Info: figures/carbon_flux_east_vs_west.png used on input lin
-e 540.
+<use figures/observed_time_averaged_flux.png>
+Package pdftex.def Info: figures/observed_time_averaged_flux.png used on input 
+line 533.
 (pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
 
-Overfull \hbox (11.74352pt too wide) in paragraph at lines 540--541
+Overfull \hbox (11.74352pt too wide) in paragraph at lines 533--535
  [][] 
  []
 
-<figures/carbon_flux_isotherm_depth.png, id=53, 578.16pt x 433.62pt>
-File: figures/carbon_flux_isotherm_depth.png Graphic file (type png)
+<figures/zoomed_time_average_flux.png, id=51, 578.16pt x 433.62pt>
+File: figures/zoomed_time_average_flux.png Graphic file (type png)
 
-<use figures/carbon_flux_isotherm_depth.png>
-Package pdftex.def Info: figures/carbon_flux_isotherm_depth.png used on input l
-ine 553.
+<use figures/zoomed_time_average_flux.png>
+Package pdftex.def Info: figures/zoomed_time_average_flux.png used on input lin
+e 541.
+(pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
+
+Overfull \hbox (11.74352pt too wide) in paragraph at lines 541--542
+ [][] 
+ []
+
+<figures/flux_at_one_latitude.png, id=52, 578.16pt x 433.62pt>
+File: figures/flux_at_one_latitude.png Graphic file (type png)
+
+<use figures/flux_at_one_latitude.png>
+Package pdftex.def Info: figures/flux_at_one_latitude.png used on input line 55
+3.
 (pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
 
 Overfull \hbox (11.74352pt too wide) in paragraph at lines 553--555
  [][] 
  []
 
-<figures/model_iso_carbon_flux.png, id=54, 578.16pt x 433.62pt>
+<figures/carbon_flux.png, id=53, 578.16pt x 433.62pt>
+File: figures/carbon_flux.png Graphic file (type png)
+
+<use figures/carbon_flux.png>
+Package pdftex.def Info: figures/carbon_flux.png used on input line 570.
+(pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
+
+Overfull \hbox (11.74352pt too wide) in paragraph at lines 570--571
+ [][] 
+ []
+
+<figures/carbon_flux_east_vs_west.png, id=54, 578.16pt x 433.62pt>
+File: figures/carbon_flux_east_vs_west.png Graphic file (type png)
+
+<use figures/carbon_flux_east_vs_west.png>
+Package pdftex.def Info: figures/carbon_flux_east_vs_west.png used on input lin
+e 588.
+(pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
+
+Overfull \hbox (11.74352pt too wide) in paragraph at lines 588--589
+ [][] 
+ []
+
+<figures/carbon_flux_isotherm_depth.png, id=55, 578.16pt x 433.62pt>
+File: figures/carbon_flux_isotherm_depth.png Graphic file (type png)
+
+<use figures/carbon_flux_isotherm_depth.png>
+Package pdftex.def Info: figures/carbon_flux_isotherm_depth.png used on input l
+ine 601.
+(pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
+
+Overfull \hbox (11.74352pt too wide) in paragraph at lines 601--603
+ [][] 
+ []
+
+<figures/model_iso_carbon_flux.png, id=56, 578.16pt x 433.62pt>
 File: figures/model_iso_carbon_flux.png Graphic file (type png)
 
 <use figures/model_iso_carbon_flux.png>
-Package pdftex.def Info: figures/model_iso_carbon_flux.png used on input line 5
-61.
+Package pdftex.def Info: figures/model_iso_carbon_flux.png used on input line 6
+09.
 (pdftex.def)             Requested size: 256.0748pt x 192.05052pt.
 
-Overfull \hbox (11.74352pt too wide) in paragraph at lines 561--564
+Overfull \hbox (11.74352pt too wide) in paragraph at lines 609--612
  [][] 
  []
 
 
-Underfull \vbox (badness 1122) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [8 <./figures/observed_time_averaged_flux.png> <./figures/zoomed_time_average_
 flux.png>]
-<figures/Ocean_surface_currents.jpg, id=60, 697.8572pt x 361.35pt>
+Underfull \vbox (badness 1558) has occurred while \output is active []
+
+ [9 <./figures/flux_at_one_latitude.png> <./figures/carbon_flux.png> <./figures
+/carbon_flux_east_vs_west.png>]
+<figures/Ocean_surface_currents.jpg, id=68, 697.8572pt x 361.35pt>
 File: figures/Ocean_surface_currents.jpg Graphic file (type jpg)
 
 <use figures/Ocean_surface_currents.jpg>
 Package pdftex.def Info: figures/Ocean_surface_currents.jpg used on input line 
-606.
+657.
 (pdftex.def)             Requested size: 241.84842pt x 125.22829pt.
 
-Underfull \vbox (badness 5036) has occurred while \output is active []
-
- [9 <./figures/flux_at_one_latitude.png> <./figures/carbon_flux.png> <./figures
-/carbon_flux_east_vs_west.png>]
-Underfull \vbox (badness 1122) has occurred while \output is active []
+Underfull \vbox (badness 2653) has occurred while \output is active []
 
  [10 <./figures/carbon_flux_isotherm_depth.png> <./figures/model_iso_carbon_flu
 x.png> <./figures/Ocean_surface_currents.jpg>]
-Overfull \hbox (48.82489pt too wide) in paragraph at lines 667--670
+Overfull \hbox (48.82489pt too wide) in paragraph at lines 726--729
 \OT1/cmr/m/n/10.95 http://www.metoffice.gov.uk/research/climate/seasonal-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 667--670
+Underfull \hbox (badness 10000) in paragraph at lines 726--729
 \OT1/cmr/m/n/10.95 to-decadal/gpc-outlooks/el-nino-la-nina/enso-
  []
 
 
-Overfull \hbox (97.79578pt too wide) in paragraph at lines 671--673
+Overfull \hbox (97.79578pt too wide) in paragraph at lines 730--732
 \OT1/cmr/m/n/10.95 http://www.hurricanescience.org/science/observation/ships/sh
 ips/
  []
 
 
-Underfull \hbox (badness 2818) in paragraph at lines 677--679
+Underfull \hbox (badness 2818) in paragraph at lines 736--738
 []\OT1/cmr/m/n/10.95 J. Bjerk-nes, At-mo-spheric Tele-con-nerc-tions
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 680--682
+Underfull \hbox (badness 10000) in paragraph at lines 739--741
 []\OT1/cmr/m/n/10.95 The En-gi-neer-ing Tool-box. Avail-able at
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 680--682
+Underfull \hbox (badness 10000) in paragraph at lines 739--741
 \OT1/cmr/m/n/10.95 http://www.engineeringtoolbox.com/gases-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 680--682
+Underfull \hbox (badness 10000) in paragraph at lines 739--741
 \OT1/cmr/m/n/10.95 solubility-water-d[]1148.html. (Ac-cessed 30
  []
 
 
-Underfull \hbox (badness 1852) in paragraph at lines 686--688
+Underfull \hbox (badness 1852) in paragraph at lines 745--747
 \OT1/cmr/m/n/10.95 A Com-par-a-tive Study, \OT1/cmr/m/it/10.95 Global Bio-chem-
 i-cal
  []
 
-[11] (./report.aux)
+[11] [12
 
-LaTeX Warning: There were undefined references.
-
- ) 
+] (./report.aux) ) 
 Here is how much of TeX's memory you used:
- 2710 strings out of 495028
- 38813 string characters out of 6181497
- 107441 words of memory out of 5000000
- 5877 multiletter control sequences out of 15000+600000
- 10984 words of font info for 39 fonts, out of 8000000 for 9000
+ 2718 strings out of 495028
+ 39020 string characters out of 6181497
+ 107502 words of memory out of 5000000
+ 5886 multiletter control sequences out of 15000+600000
+ 10363 words of font info for 37 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,15n,32p,410b,234s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmt
-i10.pfb>
-Output written on report.pdf (11 pages, 1050499 bytes).
+ 38i,15n,32p,474b,234s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx1
+2.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmti10.pfb>
+Output written on report.pdf (12 pages, 1080712 bytes).
 PDF statistics:
- 112 PDF objects out of 1000 (max. 8388607)
- 60 compressed objects within 1 object stream
+ 117 PDF objects out of 1000 (max. 8388607)
+ 62 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 81 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 86 words of extra memory for PDF output out of 10000 (max. 10000000)
 

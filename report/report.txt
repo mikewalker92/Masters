@@ -13,15 +13,15 @@
 \maketitle
 
 \begin{abstract}
-I proposed a low order model to describe the carbon dioxide flux in the equatorial Pacific in 
+I propose a low order model to describe the carbon dioxide flux in the equatorial Pacific in 
 response to the El Nino Southern Oscillation. The model assumes one contribution due to the 
 temperature of the water and the
 wind speed at the surface of the ocean, and a second contribution due to water from the deep ocean 
-being drawn up to the surface. Using this approach combined with a dynamical model, I was able to 
+being drawn up to the surface. Using this approach combined with a dynamical model, I am able to 
 construct a solution which agrees well with observation on the magnitude of the flux, the 
 difference in flux between the east and the west of the ocean and the inter-annual variation in 
-flux. The model is not however able to capture the North, South variation in flux  in this area of 
-the ocean, probably as we have ignored advective currents.
+flux. The model is not however able to capture the North, South variation in flux in this area of 
+the ocean, probably as the model ignores advective currents.
 \end{abstract}
 \end{@twocolumnfalse}]
 
@@ -50,9 +50,17 @@ period of ENSO of a few years) we take the properties of the deep  ocean to be c
 
 \begin{figure} [ht]
 \centering
-\includegraphics[width=85mm]{figures/TempDepthProfile.jpg}
+\includegraphics[width=90mm]{figures/TempDepthProfile.jpg}
 \caption{A typical low latitude ocean temperature profile with depth. Image from \cite{TempProfile}}
 \label{TempDepthProfile}
+\end{figure}
+
+\begin{figure} [ht]
+\centering
+\includegraphics[width=85mm]{figures/el_nino_la_nina.png}
+\caption{A comparison of the anomaly in Surface Sea Temperatures in the equatorial Pacific during 
+the El Nino Event, La Nina events depicted in Figure \ref{TempDepthProfile}. Data from \cite{TAO} }
+\label{el_nino_la_nina}
 \end{figure}
 
 Under normal conditions, (neither El Nino nor La Nina) the easterly trade winds create a mean 
@@ -106,11 +114,16 @@ predictions of the carbon flux in this region are generally unreliable. Furtherm
 complex, numerical nature of these models, it is often difficult to gain any physical insight into 
 the processes occurring. 
 
-In light of this, in this project I will take a step back from these complex models, and 
+In light of this, in this project I take a step back from these complex models, and 
 instead attempt to build a low order, physically intuitive model of how the carbon flux varies 
 during ENSO. The main goals of this project are therefore to create a model which is as simple as 
 possible while still capturing the main effects, gives an answer which is easy to interpret 
-physically, and is driven by observational data. 
+physically, and is driven by observational data.
+
+To do this, I begin by constructing a model of the carbon flux in terms of measurable quantities, 
+and use observational data to test it. I then look to parametrise this model such that it depends on
+only one 'El Nino Strength' variable. Finally, I use this to provide an estimate of the carbon 
+flux between the ocean and the atmosphere based on a model of the El Nino Southern Oscillation.
 
 \section{Experimental Method}
 
@@ -174,7 +187,7 @@ temperature range as
 
 \begin{equation}
 S(t) = \frac{1000}{44} \cdot (22.4 - 0.07T).
-\ref{solubility}
+\label{solubility}
 \end{equation}
 
 (The numerical pre-factor is a unit conversion from $g \cdot kg^{-1}$ into $mol \cdot m^{-3}$ 
@@ -323,64 +336,87 @@ From this, the upwelling rate, $w$, can be calculated as
 
 \begin{equation}
 w = \frac{R \cdot \Delta Heat}{\rho c \Delta T}.
+\label{upwelling_rate}
 \end{equation}
 
 \subsection{Fitting Model Parameters to Data}
 
-Let us summarise our progress so far;
+Combining Equation \ref{general_equation} and Equation \ref{upwelling_rate} produces a final 
+estimate for the carbon flux.
 
 \begin{equation}
-F_{total} = Hk \cdot \lbrace Ae^{0.0423T} - fP \rbrace + \frac{70fR \Delta Heat}{44\rho c}
+F_{total} = Hk \cdot \lbrace Ae^{0.0423T} - fP \rbrace + \frac{70fR \Delta Heat}{44\rho c}.
+\label{full_equation}
 \end{equation}
 
-We must now estimate the values for the model parameters.
+Finally, values must be obtained for the model parameters.
 
 \begin{itemize}
 
-\item{$f$:} This is the mole fraction of $\text{CO}_2$ in the atmosphere. We assume that this is a 
-constant, 
-and has a value of $3.8 \times 10^4$ (atmospheric concentration of $\text{CO}_2$ is about 380ppm).
+\item{$f$:} This is the mole fraction of $\text{CO}_2$ in the atmosphere. As the atmosphere is well 
+mixed, $f$ is assumed to be a constant in space and time, and has a value of $3.8 \times 10^{-4}$ 
+(atmospheric concentration of $\text{CO}_2$ is about 380ppm).
 
-\item{$Heat_{ref}$:} This is the heat content that we expect to find with no upwelling. We pick a 
-region in the west of the basin as our reference point, (0N, 156E). We also allow for a seasonal 
-cycle, and o the reference value used will be the average for that month of the year. 
+\item{$Heat_{ref}$:} This is the expected heat content in the absence of upwelling. I selected the 
+grid point (0N, 156W) to be the reference point, and allow for a seasonal cycle. The reference 
+value will therefore be the average for that month of the year. 
 
 \item{$A$:} This is chosen by picking a temperature and pressure for which the carbon flux due to 
-SST is zero. By looking at Figure 7, we choose a region in the west of the equatorial Pacific as 
-our zero point, and  by looking at mean SST and surface pressure in this region, obtained a value 
-of $1.085 \times 10^{-4}$.
+SST is zero. By examining Figure \ref{observed_time_averaged_flux}, I select a region in the west 
+of the equatorial Pacific as our zero point, and  by looking at mean SST and surface pressure in 
+this region, obtained a value of $1.085 \times 10^{-4}$.
 
-\item{$R$:} As there is no precise data for the upwelling velocity, this was chosen to be 400 by 
-tuning the model to best fit the observed flux. The corresponding value for $w$ is peaking at about 
-$5 \times 10^{-4}$ (assuming a $\Delta T$ of $5K$) which is a sensible value.
+\item{$R$:} As there is no precise data for the upwelling velocity, this was chosen to be 5000 by 
+tuning the model to best fit the observed flux. The corresponding value for $w$ peaks at about 
+$5 \times 10^{-4}cms^{-1}$ (assuming a $\Delta T$ of $5K$).
 
 \end{itemize}
 
 \subsection{Effect of ENSO on Carbon Flux}
 
-We now wish to use this model model to calculate how the carbon flux varies with time during ENSO. 
-In order to do this, we need to relate the variables used in equation () to some parameter 
-representing the strength of ENSO at that time. For our purposes, we choose the thermocline depth 
-as our ENSO parameter, (reference) as there is a large amount of data for this, and it is a  common 
-diagnostic to describe ENSO. It is a common practice (change wording here) to characterise 
+I would now like to use this model to calculate how the carbon flux varies with time during ENSO. 
+In order to do this, it is necessary to relate the variables used in equation \ref{full_equation} 
+to some parameter representing the strength of ENSO at that time. For our purposes, we choose the 
+thermocline depth as our ENSO parameter, as there is a large amount of data for this, and it is a  
+common diagnostic to describe ENSO. It is a common practice (change wording here) to characterise 
 all variables in terms of thermocline depth, (reference or change) and is convenient for us 
 to take this approach.
 
 For this paper, I use data taken from \cite{TAO}. The TAO data is gathered from a 
 system of buoys in the Pacific which cover a region from 8N to 8S, and from 137E to 110W. These 
-buys gather data daily, and records go back to about 1960, although  gaps in the data are frequent, 
+buoys gather data daily, and records go back to about 1960, although  gaps in the data are 
+frequent, 
 especially early in the time series. The data set does not include data for the thermocline depth 
 as such, but does include data for the 20C isotherm depth, which we expect to be a surface within 
-the thin thermocline lyer, so we shall use this as a substitute. Due to the frequent gaps in the 
+the thin thermocline layer, so we shall use this as a substitute. Due to the frequent gaps in the 
 data, I first convert the data to a monthly mean, thus reducing the impact of individual missing 
 days or weeks. I then calculate a mean value for each of the variables used (SST, heat content, 
-surface air pressure, surface wind speed and 20C isotherm depth). It is important for us to be able 
-to separate the effect of ENSO from the effect of the annual cycle, so we calculate a separate mean 
-for each month of the year. From this, we are able to obtain a time series of the anomaly in each 
+surface air pressure, surface wind speed and 20C isotherm depth). It is important to be able 
+to separate the effect of ENSO from the effect of the annual cycle, so I calculate a separate mean 
+for each month of the year. From this, I am able to obtain a time series of the anomaly in each 
 of the variables, calculated by subtracting the expected value for that month from the actual value 
-recorded. We then make a scatter plot of the anomaly in each of these variables against the 20C 
-isotherm depth anomaly. From this, we calculate the Pearson Product-Moment Correlation Coefficient 
-and a line of best fit. The results are shown in Table 1 and Figure 4.
+recorded. A scatter plot of the anomaly in each of these variables against the 20C 
+isotherm depth anomaly is then created, and the Pearson Product-Moment Correlation Coefficient is 
+calculated along with a line of best fit. The results are shown in Table 1 and Figure 
+\ref{scatter_plot_SST_vs_isotherm}.
+
+\begin{table}
+\begin{tabular}{ | l| c | c |} 
+  \hline
+  Variable & PMCC & Gradient \\
+  \hline
+  SST & 0.89 & 0.053 \\
+  Heat Content & 0.97 & 0.0054\\
+  Surface Pressure & -0.55 & -0.018 \\
+  Surface Wind Speed & 0.63 & 0.022\\
+  \hline 
+\end{tabular}
+\caption{The correlation coefficient and the gradient of the line of best fit for the scatter 
+plots 
+between the anomaly in the variables shown and the anomaly in 20C isotherm depth at (0N, 110W). 
+(Surface Pressure refers to the atmospheric pressure at the surface of the ocean).}
+\label{table}
+\end{table}
 
 \begin{figure} [ht]
 \centering
@@ -389,20 +425,19 @@ and a line of best fit. The results are shown in Table 1 and Figure 4.
 \label{scatter_plot_SST_vs_isotherm}
 \end{figure}
 
-We found a strong correlation between the SST and the isotherm depth, and an even better 
+There is a strong correlation between the SST and the isotherm depth, and an even better 
 correlation between the heat content and the isotherm depth. The correlations with pressure and 
-wind speed were much weaker, but were still considered good enough for us to gain a rough 
+wind speed were much weaker, but are still considered good enough to gain a rough 
 parametrisation of them from the line of best fit and the monthly mean. 
 
-This gives us a method of estimating a carbon flux using the thermocline depth as the only 
+This provides a method of estimating a carbon flux using the thermocline depth as the only 
 parameter.
 
 \subsection{A Simple Model of ENSO}
 
 We now wish to demonstrate our ability to generate a prediction of the carbon flux based on a 
-dynamical model 
-of ENSO. In this case, we shall use the simple model of ENSO proposed in \cite{Tziperman1994}. This 
-model is 
+dynamical model of ENSO. In this case, we shall use the simple model of ENSO proposed in 
+\cite{Tziperman1994}. This model is 
 excellent for our purposes as it is one of the simplest which still exhibits the low order chaotic 
 behaviour that we observe, has a time period which approximately agrees with observation, and shows 
 seasonal locking. It also characterises ENSO in terms of the thermocline depth alone. 
@@ -416,11 +451,11 @@ created, and this is reflected off the western boundary of the basin and then tr
 a Kelvin wave. This wave eventually reaches the East of the basin at a time $\tau_2$ at which point 
 it also has an effect on the anomaly at the centre of the basin. 
 
-By adding a seasonal cycle to this concept, we can construct a simple equation for the rate of 
-change of thermocline depth;
+By adding a seasonal cycle to this concept, it is possible to construct a simple equation for the 
+rate of change of thermocline depth
 
 \begin{equation}
-\frac{dh}{dt} = a A[h(t-\tau_1)] - bA[h(t-\tau_2)] + c \cdot \cos (\omega t)
+\frac{dh}{dt} = a A[h(t-\tau_1)] - bA[h(t-\tau_2)] + c \cdot \cos (\omega t),
 \end{equation}
 
 where $a$, $b$, and $c$ are parameters, and $A[h]$ is a function defining the coupling between the 
@@ -437,19 +472,21 @@ required distance;
 \tau_2 = \frac{L}{2C_{Rossby}} + \frac{L}{C_{Kelvin}}
 \end{equation}
 
-Here, $L$ is the width of the Pacific basin, and $C_{Kelvin}$ and $C_{Rossby}$ are the speeds of 
+Here, $L$ is the width of the Pacific basin, and $C_{Kelvin} = $ and $C_{Rossby} = $ are the speeds 
+of 
 the Kelvin and Rossby waves respectively. 
 
-We use the form suggested of $A$ in \cite{Munnich1991} of;
+For the form of $A[h]$, I follow the suggestion of \cite{Munnich1991},
 
 \begin{equation}
 look up how to do this again!!!
+\label{form_of_a_equation}
 \end{equation}
 
 \begin{figure} [ht]
 \centering
 \includegraphics[width=90mm]{figures/form_of_a.png}
-\caption{Form of $A[h]$ given by equation(label). Image from \cite{Munnich1991}}
+\caption{Form of $A[h]$ given by Equation \ref{form_of_a_equation}. Image from \cite{Munnich1991}}
 \label{form_of_A}
 \end{figure}
 
@@ -460,14 +497,12 @@ look up how to do this again!!!
 \label{correlation_map}
 \end{figure}
 
-The predicted for of ENSO varies greatly depending on the choice of parameters. For a full 
+The predicted form of ENSO varies greatly depending on the choice of parameters. For a full 
 discussion of how the parameters affect the model, see \cite{Tziperman1994} and \cite{Munnich1991}, 
-for our 
-purposes, we shall choose the parameters to be as in \cite{Tziperman1994} with $\kappa = 2.0$. This 
-choice 
-of parameters gives us the best possible mix of period of oscillation, seasonal locking, and 
-chaotic behaviour. Figure 6 shows a plot of the time series of this model against the observed 
-data. 
+for our purposes, the parameters are as in \cite{Tziperman1994} with $\kappa = 
+2.0$. This choice of parameters gives the best possible mix of period of oscillation, seasonal 
+locking, and chaotic behaviour. Figure \ref{isotherm_anomaly_model} shows a plot of the time series 
+of this model against the observed data. 
 
 \begin{figure} [ht]
 \centering
@@ -478,10 +513,12 @@ data.
 
 \section{Results}
 
-We start by presenting the observed flux in Figure 7. We shall use this to evaluate the success of 
-our model. In Figure 8 we present a plot of the model time averaged carbon flux over the whole of 
-the basin. These plots have been created using Equation 17 with observation data from \cite{TAO}
-to create a carbon flux map for each month since 1979. We not that while there was sufficient data 
+Figure \ref{observed_time_averaged_flux} shows the observed global carbon flux, which acts as the 
+truth against which the model is tested. In Figure \ref{zoomed_time_averaged_flux} I present a 
+plot of the time averaged carbon flux over the whole of the basin, comparing observation with 
+the output of the model. This plots is created using Equation \ref{full_equation} with observation 
+data from \cite{TAO}
+to create a carbon flux map for each month since 1960. We note that while there was sufficient data 
 for SST, heat content, isotherm depth and wind speed, the data for pressure does not exist for many 
 of the grid points. In order to preserve enough data points, we have made the assumption that 
 pressure is a constant in time and space. This is not a terrible assumption as the variance in the 
@@ -506,10 +543,10 @@ represents our region of interest for this project.}
 \label{zoomed_time_averaged_flux}
 \end{figure}
 
-We can immediately see that we predict a much larger flux than expected in the North of the basin, 
-but in the South of the basin, our prediction matches the observational data well. Figure 9 
-illustrates this by plotting the time averaged carbon flux along a slice through the data at a 
-latitude of 4S, where the data suggests that the effect of ENSO is large.
+It is clear that the model predicts a much larger flux than expected in the North of the basin, 
+but in the South of the basin, the prediction matches the observational data well. Figure 
+\ref{flux_at_one_latitude} illustrates this by plotting the time averaged carbon flux along a slice 
+through the data at a latitude of 4S.
 
 \begin{figure} [ht]
 \centering
@@ -519,13 +556,14 @@ the model.}
 \label{flux_at_one_latitude}
 \end{figure}
 
-We next wish to examine how the carbon flux varies with time. To do this, we pick a single grid 
-point, in our case (0N, 110W), and plot the time series of the flux at that point. We have chosen 
-this grid point because we showed stronger correlations between the variables in the east of the 
-basin than in the west, and so believe that many of our assumptions will be most reliable in this 
-region. It is also a grid point in which the data is amongst the most complete, and allows for 
-comparison with the model, which is only valid for a point in the east of the basin. Figure 10 
-shows the plots for the carbon flux as a function of time. 
+In order to better examine how the carbon flux varies with time, I select a single grid 
+point, in this case (0N, 110W), and plot the time series of the carbon flux at that point. I have 
+chosen this grid point because there are stronger correlations between the variables in the east 
+of the basin than in the west, and so many of our assumptions will be most reliable in 
+this region. It is also a grid point in which the data is amongst the most complete, and allows for 
+comparison with the flux based on the modelled thermocline anomaly, which is only valid for a point 
+in the east of the basin. Figure \ref{carbon_flux} shows the plots for the carbon flux as a 
+function of time. 
 
 \begin{figure} [ht]
 \centering
@@ -534,12 +572,16 @@ shows the plots for the carbon flux as a function of time.
 \label{carbon_flux}
 \end{figure}
 
-We can also compare how to flux varies in different parts of the basin. Figure 11 compares the flux 
-in the west of the basin to the flux in the east of the basin. Finally, we wish to show that we are 
-able to make a prediction of the carbon flux based on a model of how the thermocline depth evolves 
-with time. In order to do this, we have parametrised all variables in terms of the isotherm depth. 
-We here assess the validity of this method by plotting a comparison between the historical flux 
-based on all of the data and a plot based only on the historic isotherm depth. 
+It is also possible to compare how to flux varies in different parts of the basin. Figure 
+\ref{carbon_flux_east_vs_west} compares the flux 
+in the west of the basin to the flux in the east of the basin. 
+
+Finally, I aim to show that I am able to make a prediction of the carbon flux based on a model of 
+how the thermocline depth evolves with time. In order to do this, all of the variables have been 
+parametrised in terms of the isotherm depth anomaly. In order to test the validity of this 
+approach, Figure \ref{carbon_flux_isotherm_depth} compares a plot of the carbon flux at (0N, 110W) 
+when calculated using the data each of the variables, and when using the historic isotherm depth to 
+parametrise all other variables. 
 
 \begin{figure} [ht]
 \centering
@@ -549,7 +591,7 @@ based on all of the data and a plot based only on the historic isotherm depth.
 \end{figure}
 
 We note the the variability in the parametrised model is much lower than in the unparametrised 
-version, but  that the mean values and the shape of the plots are similar. Proceeding with this 
+version, but that the mean values and the shape of the plots are similar. Proceeding with this 
 method, we are now able to plot the predicted carbon flux based on the model of the thermocline 
 anomaly. We have scaled the thermocline anomaly by a factor of 50 so that the magnitude of the 
 fluctuations are in line with the observed values. Figure 12 shows the result of this.
@@ -558,8 +600,8 @@ fluctuations are in line with the observed values. Figure 12 shows the result of
 \centering
 \includegraphics[width=90mm]{figures/carbon_flux_isotherm_depth.png}
 \caption{Time series of the carbon flux at (0N, 110W) based on (a) model with all variables from 
-data and (b) all variables paratrised in terms of isotherm height.}
-\label{carbon_flux_iostherm_depth}
+data and (b) all variables parametrised in terms of isotherm height.}
+\label{carbon_flux_isotherm_depth}
 \end{figure}
 
 \begin{figure} [ht]
@@ -573,8 +615,9 @@ to the upwelling.}
 
 \section{Analysis}
 
-In Figures 10 and 13, we see that our total flux in the East is comprised of a strongly positive 
-flux due to the upwelling, and a slightly negative flux due to the SST. We also note that in 
+In Figures \ref{carbon_flux} and \ref{model_iso_carbon_flux}, it is shown that our total flux in 
+the East is comprised of a strongly positive 
+flux due to the upwelling, and a slightly negative flux due to the SST. It is also clear that in 
 general, the anomaly in $F_{SST}$ has the opposite sign to the anomaly in $F_{upwelling}$. This 
 makes sense, as an increase in upwelling results in a decrease in the SST, however, it has an 
 interesting effect on the inter-annual variation of the flux when comparing the parametrised and 
@@ -585,8 +628,8 @@ not true as much in the unparametrised version, where while the signs often oppo
 always the case, and the form of the components are not identical. The allows for a much larger 
 variation in the flux. 
 
-When we compare the inter-annual variability in the $\text{CO}_2$ flux that we obtain from our model 
-with 
+When the inter-annual variability in the $\text{CO}_2$ flux that we obtain from our model is 
+compared with 
 observation, (reference) we find that our variation in the East of the basin roughly agrees with 
 observation, both with a value of about 1 $mol m^{-2} yr^{-1}$, but our variability in the West of 
 the basin does not drop off as it does in the observed data. This could be due to the fact that 
@@ -594,7 +637,8 @@ the thermocline is so much deeper in this section of the ocean. This extra depth
 properties of this region will be much slower to change, and could damp the effect of ENSO more 
 than suggested in the model. 
 
-From Figure 9, we can see that the model captures the East, West pattern very well. Both the 
+From Figure \ref{flux_at_one_latitude}, we can see that the model captures the East, West pattern 
+very well. Both the 
 magnitude of the flux and the variation of the flux between the east and west of the ocean agree 
 quite well with observation. This suggests that the proposed model is succeeding in capturing much 
 of the observed behaviour and is an encouraging result. However, our model shows significant 
@@ -602,7 +646,8 @@ North-South gradient which does not agree with the data. A possible explanation 
 ocean currents. Our weakest assumption appears to be in our estimation of the upwelling velocity, 
 where we have had to attribute all of difference in heat to upwelling. In the North-East of the 
 basin, this is not the case, as there is the additional effect of cooler water being brought down 
-from North of the equator (Figure 14). As a result of this, the water in this region is cooler than 
+from North of the equator (Figure \ref{Ocean_surface_currents}). As a result of this, the water in 
+this region is cooler than 
 elsewhere, and we have over estimated the upwelling rate, giving us the false result. In favour of 
 this explanation, as about 4S, where Figure 14 indicates that the approximation of a purely 
 westwards flow is best, we obtain the results which best match observation. 
@@ -626,7 +671,15 @@ equal to $const + K_{bio}w$. If this is the case, then the impact of biology wou
 change the values of the parameters used. The $const$ term would effect the value of $A$, and the 
 $K_{bio}$ would effect the value of $R$. This would suggest that our values for both $F_{SST}$ and 
 $F_{upwelling}$ are slightly too low, and would be difficult to observe in the data. Alternately, 
-the effect of biology could simply be very small in comparison to the other factors. 
+the effect of biology could simply be very small in comparison to the other factors.
+
+A third large assumption made in this model is in the estimation of the concentration of CO2 in the 
+upwelling water. I currently assume that this water has a concentration equal to the saturation of 
+water at this temperature in equilibrium with the atmosphere. However, water from the deep ocean 
+interacts very little with the atmosphere, and so this is a poor assumption. A potential error in 
+this calculation would result in an error in the amount of CO2 released per unit area per unit 
+upwelling. As the model is calibrated to give the correct carbon flux, this error would be likely 
+to only effect the size of the replenishment rate $R$.
 
 \section{Conclusion}
 

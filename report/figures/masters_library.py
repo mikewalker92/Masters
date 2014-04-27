@@ -126,7 +126,7 @@ def get_data(latitude, longitude, mask, column, folder):
 
 def make_cube(data, time_points, latitude, longitude):
     
-    time = iris.coords.DimCoord(time_points, long_name='time', units='months')
+    time = iris.coords.DimCoord(time_points, long_name='time')
     cube = iris.cube.Cube(data, dim_coords_and_dims=[(time, 0)])
     
     latitude = iris.coords.AuxCoord([latitude], long_name = 'latitude', units='degrees')
@@ -301,6 +301,109 @@ def calculate_flux_iso_data(isotherm, correlations, const):
                     heat_data.append(mask)
                     pressure_data.append(mask)
                     wind_data.append(mask)
+    
+    time_points = isotherm.coord('time').points
+    latitude = const['selected_lat']
+    longitude = const['selected_lon']
+    
+    sst_data = np.ma.masked_values(sst_data, mask, atol=0.1)
+    heat_data = np.ma.masked_values(heat_data, mask, atol=0.1)
+    pressure_data = np.ma.masked_values(pressure_data, mask, atol=0.1)
+    wind_data = np.ma.masked_values(wind_data, mask, atol=0.1)
+    
+    sst = make_cube(sst_data, time_points, latitude, longitude)
+    heat = make_cube(heat_data, time_points, latitude, longitude)
+    pressure = make_cube(pressure_data, time_points, latitude, longitude)
+    wind = make_cube(wind_data, time_points, latitude, longitude)
+    
+    # We now use the following equation to estimate the carbon flux;
+    #
+    # Flux = H*k*{Ae^(0.0423*T) - fP} + (70/44*rho*c)*R*(heat_ref - heat)
+    #
+    # where H = (1000/44*P)*(22.4 - 0.07T)
+    #
+    # and k = 87.6*(0.31v^2 - 0.71v + 7.76
+    
+    H = (1000./(44.*pressure_const)) * (-0.07*sst + 22.4 )
+    k = 87.6*(0.31*wind**2 - 0.71*wind + 7.76)
+    pco2_ocean = A*math.exp(a*sst)
+    pco2_ocean.units = None
+    flux_sst = H*k*(pco2_ocean - f*pressure_const)
+    
+    flux_upwelling = (70. * f * R * (-1.*heat + heat_ref.data)) / (44. * rho * c)
+    
+    flux = flux_sst + flux_upwelling
+        
+    return [flux, flux_sst, flux_upwelling]
+
+'''
+--------------------------------------------------------------------------------
+4.1 - calculate_flux_iso_model() - calculates the carbon flux from the data given.
+--------------------------------------------------------------------------------
+'''
+
+def calculate_flux_iso_model(isotherm, correlations, const):
+    
+    # We first unpack the data
+    
+    gradient_sst = correlations['gradient_sst']
+    gradient_heat = correlations['gradient_heat']
+    gradient_pressure = correlations['gradient_pressure']
+    gradient_wind = correlations['gradient_wind']
+    
+    means_sst = correlations['means_sst']
+    means_heat = correlations['means_heat']
+    means_pressure = correlations['means_pressure']
+    means_wind = correlations['means_wind']
+    
+    means_sst.units = None
+    means_heat.units = None
+    means_pressure.units = None
+    means_wind.units = None
+    
+    f = const['f']
+    A = const['A']
+    R = const['R']
+    a = const['a']
+    heat_ref = const['heat_ref']
+    pressure_const = const['pressure_const']
+    rho = const['rho']
+    c = const['c']
+    
+    # We now estimate the value of the variables from the value of the isotherm
+    # depth using the expected value and the gradient obtained from the 
+    # correlations.
+    
+    mask = -999.
+    
+    sst_data = []
+    heat_data = []
+    pressure_data = []
+    wind_data = []
+    
+    heat_ref.units = None
+    
+    day = 0
+    month = 0
+    for time, datum in enumerate(isotherm.data):    
+        if datum is not np.ma.masked:
+            sst_data.append((means_sst[month] + gradient_sst*datum).data)
+            heat_data.append((means_heat[month] + gradient_heat*datum).data)
+            pressure_data.append((means_pressure[month] + gradient_pressure*datum).data)
+            wind_data.append((means_wind[month] + gradient_wind*datum).data)
+        else:
+            sst_data.append(mask)
+            heat_data.append(mask)
+            pressure_data.append(mask)
+            wind_data.append(mask)
+        
+        day += 1
+        if day == 30:
+            day = 0
+            month += 1
+            if month == 12:
+                month = 0
+    
     
     time_points = isotherm.coord('time').points
     latitude = const['selected_lat']
