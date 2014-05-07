@@ -511,25 +511,3 @@ def get_correlations(x, y):
     standard_error_cube.rename('standard_error')
     
     return [pmcc_cube, gradient_cube, standard_error_cube]
-
-
-def interpolate(cube):
-    data_points = [0]
-    data = [0]
-    
-    for index, value in enumerate(cube.data):
-        if value is not np.ma.masked:
-            data_points.append(index)
-            data.append(value)
-    f = scipy.interpolate.interp1d(data_points, data)
-    
-    return f
-
-def get_fft(data, dt):
-  
-    fft = np.abs(rfft(data))**2
-    rate = 180./dt
-    x = [index*rate/len(data) for index in xrange(len(data))]
-    x = np.array(x)
-
-    return x, fft

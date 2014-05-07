@@ -14,6 +14,8 @@ Figures created are as follows:
 8. Flux East vs West
 9. Flux all variables vs just isotherm depth
 10. flux from ENSO model
+11. correlation map
+12. SST anomaly EL Nino vs La Nina
 '''
 
 '''
@@ -42,7 +44,7 @@ show7 = False
 show8 = False
 show9 = False
 show10 = False
-show11 = False
+show11 = True
 show12 = True
 
 '''
@@ -430,9 +432,7 @@ if show11:
     
     qplt.pcolormesh(cube,cmap='brewer_Reds_09', vmax=1, vmin=0)
     plt.title('PMCC between SST Anomaly and Isotherm Depth Anomaly')
-    ax.coastlines
-    grid = plt.gca().gridlines(draw_labels=True)
-    grid.xlabels_top=False
+    ax.coastlines()
     # Add a citation to the plot.
     iplt.citation(iris.plot.BREWER_CITE)
     
@@ -455,27 +455,15 @@ if show12:
     
     iplt.pcolormesh(el_nino, vmin = -4, vmax = 4)
     plt.title('SST Anomaly during an El Nino Event')
-    plt.gca().coastlines
+    plt.gca().coastlines()
+
     
     plt.subplot(212, projection=plate_carree)
     
     qplt.pcolormesh(la_nina, vmin = -4, vmax = 4)
     plt.title('SST Anomaly during a La Nina Event')
-    plt.gca().coastlines
+    plt.gca().coastlines()
     
     plt.show()
-    
-'''
---------------------------------------------------------------------------------
-Figure 13: Temp Profile
---------------------------------------------------------------------------------
-'''
-
-if show13:
-    
-    filename = '/home/michael/git/Masters/Tz/Tz.nc'
-    tz = iris.load_cube(filename)
-    
-    plt.plot(tz)
-    plt.invert_yaxis
+   
     
